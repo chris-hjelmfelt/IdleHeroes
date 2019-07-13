@@ -1,0 +1,168 @@
+body {
+	background-color: white;
+	color: black;
+	font-size: 12px;
+	font-family: verdana;
+	
+}
+
+h1 {
+	color: #009999;
+}
+
+h2 {
+	color: #009999;
+}
+
+h3 {
+	color: #009999;
+	display: inline;
+}
+
+#monsterimg {
+	width: 100%
+	border: 2px solid black;	
+}
+
+#upgradebox {
+	display: none;
+	border: 2px solid black;
+}
+
+.numhero {
+	color: #009999;
+	font-size: 16px;
+}
+
+.upmultiple{
+	color: #009999;
+	font-size: 12px;
+}
+
+.cost {
+	color: black;
+	font-size: 10px;
+}
+
+.fightmess {
+	color: black;
+	font-size: 24px;
+}
+
+.actionmess {
+	color: #009999;
+	font-size: 16px;
+}
+
+.bigbuttons {
+	background-color: #0099FF;
+	color: black;
+	float: center;
+	width: 200px;
+	border: 2px solid black;
+	ouline: 2px;
+	padding: 10px;
+	transition: 0.3s;
+	font-size: 28px;	
+}
+
+.heroimage {
+	float: center;
+	width: 80px;
+	border: 2px solid black;
+	transition: 0.3s;	
+}
+button.hover{
+	background-color: #0099FF;
+	color: white;	
+}
+
+button.active{
+	background-color: #009999;
+	color: black;
+}
+
+.heros {
+	color: #009900;
+	font-size: 16px;
+}
+
+.herobuttons {
+	background-color: #0099FF;
+	color: black;
+	float: center;
+	width: 35px;
+	border: 2px solid black;
+	ouline: 2px;
+	padding: 10px;
+	font-size: 20px;	
+}
+
+#myProgress {
+    width: 100%;
+    background-color: white;
+	border: 2px solid black;
+}
+
+#monsterbar {
+    width: 1%;
+    height: 30px;
+    background-color: red;
+}
+
+#powerbar {
+    width: 1%;
+    height: 30px;
+    background-color: red;
+}
+
+.overlay {
+    height: 0%;
+    width: 45%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(0,0,0);
+    background-color: rgba(200,200,200, 1.0);
+    overflow-y: hidden;
+    transition: 0.5s;
+}
+
+.overlay-content {
+    position: relative;
+    top: 25%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 30px;
+    color: #009999;
+    display: block;
+    transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+    color: #f1f1f1;
+}
+
+.overlay .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay {overflow-y: auto;}
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+  }
+}

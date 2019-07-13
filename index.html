@@ -1,0 +1,466 @@
+<html>
+<head>
+<!-- TO DO:  Save progress, personal hero pic, more monster pics, title screen, 
+heroes unlock with reputation, hero names and powers -->
+<title>Idle Superheros</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+
+<body>
+<div align="center">
+<table width="1000px"><tr><td>
+<h1>Idle Superheros</h1>
+</td></tr><tr><td valign="top" align="center" width="38%">
+<table><tr><td width="100%">
+<img src="images/monster1.jpg" width="300px" id="monsterimg"><br>
+<h3>Monster Strength</h3> <div id="myProgress"><div id="monsterbar"></div></div> <span class="numhero" id="monster">0</span><br>
+<span id="fightmess"></span>
+&nbsp; <br>
+</td></tr></table>
+
+<table width="50%"><tr><td valign="center" align="center" width="50%">
+<img src="images/hero.jpg" width="80px" border="2"><br>
+</td><td>
+<table width="100%"><tr><td>
+<img src="images/click.jpg" id="click">
+</td></tr><tr><td>
+<button onclick="manclick()" type="button" class="bigbuttons" id="manual">Attack</button>
+</td></tr><tr><td>
+<span class="actionmess" id="action">&nbsp; <br> &nbsp;</span>
+</td></tr></table>
+</td></tr></table>
+&nbsp; <br>
+
+<span style="font-size:30px;cursor:pointer" class="bigbuttons" onclick="openNav()">Upgrades</span>
+<!-- <button onclick="upgrades()" type="button" class="bigbuttons" id="upgrades">Upgrades</button> -->
+<div id="myNav" class="overlay">
+	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+	<div class="overlay-content">
+		<a href="javascript:void(0)" onclick="upgrades(0)" id="up0">X5 Power to Manual Attack $1000</a> 
+		<a href="javascript:void(0)" onclick="upgrades(1)" id="up1">X2 Power to Hero 1 $5000</a>
+		<a href="javascript:void(0)" onclick="upgrades(2)" id="up2">X5 Power to Manual Attack $5000</a>
+		<a href="javascript:void(0)" onclick="upgrades(3)" id="up3">X2 Power to Hero 2 $10000</a>
+		<a href="javascript:void(0)" onclick="upgrades(4)" id="up4">X5 Power to Manual Attack $10000</a>
+		<a href="javascript:void(0)" onclick="upgrades(5)" id="up5">X2 Power to Hero 3 $20000</a>
+		<a href="javascript:void(0)" onclick="upgrades(6)" id="up6">X5 Power to Manual Attack $20000</a>
+		<a href="javascript:void(0)" onclick="upgrades(7)" id="up7">X2 Power to Hero 4 $40000</a>
+		<a href="javascript:void(0)" onclick="upgrades(8)" id="up8">X5 Power to Manual Attack $40000</a>
+	</div>
+</div>
+</td><td width="2%">
+
+</td><td valign="top" width="60%">
+<h2>Power</h2>
+<div id="myProgress"><div id="powerbar"></div></div> <span class="numhero" id="power">0</span><br>
+&nbsp; <br>
+<table width="100%"tr><td valign="top" width="25%">
+<h3>$</h3> <span id="money">0</span>
+</td><td>
+<h3>Reputation</h3> <span id="rep">0</span>
+</td></tr></table>
+
+&nbsp; <br>
+&nbsp; <br>
+<table width="100%" border="2" cellpadding="10"><tr><td width="15%">
+<button onclick="heroclick(0)" type="button" class="heroimage" id="1"><img src="images/1.jpg" width="60px"></button> 
+</td><td width="35%">
+<span class="heros">Hero 1</span> <br>
+Power Boosts: <span class="numhero" id="h1">0</span> &nbsp; <span class="upmultiple" id="um1">0</span><br>
+<span class="cost" id="cost1"></span><br>
+</td><td width="15%">
+
+<button onclick="heroclick(6)" type="button" class="heroimage" id="7"><img src="images/7.jpg" width="60px"></button> 
+</td><td>
+<span class="heros">Hero 7</span> <br>
+Power Boosts: <span class="numhero" id="h7">0</span> &nbsp; <span class="upmultiple" id="um7">0</span><br>
+<span class="cost" id="cost7"></span><br>
+</td></tr><tr><td>
+
+<button onclick="heroclick(1)" type="button" class="heroimage" id="2"><img src="images/2.jpg" width="60px"></button> 
+</td><td width="35%">
+<span class="heros">Hero 2</span> <br>
+Power Boosts: <span class="numhero" id="h2">0</span> &nbsp; <span class="upmultiple" id="um2">0</span><br>
+<span class="cost" id="cost2"></span><br>
+</td><td>
+
+<button onclick="heroclick(7)" type="button" class="heroimage" id="8"><img src="images/8.jpg" width="60px"></button> 
+</td><td width="25%">
+<span class="heros">Hero 8</span> <br>
+Power Boosts: <span class="numhero" id="h8">0</span> &nbsp; <span class="upmultiple" id="um8">0</span><br>
+<span class="cost" id="cost8"></span><br>
+</td></tr><tr><td>
+
+<button onclick="heroclick(2)" type="button" class="heroimage" id="3"><img src="images/3.jpg" width="60px"></button> 
+</td><td>
+<span class="heros">Hero 3</span> <br>
+Power Boosts: <span class="numhero" id="h3">0</span> &nbsp; <span class="upmultiple" id="um3">0</span><br>
+<span class="cost" id="cost3"></span><br>
+</td><td>
+
+<button onclick="heroclick(8)" type="button" class="heroimage" id="9"><img src="images/9.jpg" width="60px"></button> 
+</td><td>
+<span class="heros">Hero 9</span> <br>
+Power Boosts: <span class="numhero" id="h9">0</span> &nbsp; <span class="upmultiple" id="um9">0</span><br>
+<span class="cost" id="cost9"></span><br>
+</td></tr><tr><td>
+
+<button onclick="heroclick(3)" type="button" class="heroimage" id="4"><img src="images/4.jpg" width="60px"></button> 
+</td><td>
+<span class="heros">Hero 4</span> <br>
+Power Boosts: <span class="numhero" id="h4">0</span> &nbsp; <span class="upmultiple" id="um4">0</span><br>
+<span class="cost" id="cost4"></span><br>
+</td><td>
+
+<button onclick="heroclick(9)" type="button" class="heroimage" id="10"><img src="images/10.jpg" width="60px"></button> 
+</td><td>
+<span class="heros">Hero 10</span> <br>
+Power Boosts: <span class="numhero" id="h10">0</span> &nbsp; <span class="upmultiple" id="um10">0</span><br>
+<span class="cost" id="cost10"></span><br>
+</td></tr><tr><td>
+
+<button onclick="heroclick(4)" type="button" class="heroimage" id="5"><img src="images/5.jpg" width="60px"></button> 
+</td><td>
+<span class="heros">Hero 5</span> <br>
+Power Boosts: <span class="numhero" id="h5">0</span> &nbsp; <span class="upmultiple" id="um5">0</span><br>
+<span class="cost" id="cost5"></span><br>
+</td><td>
+
+<button onclick="heroclick(10)" type="button" class="heroimage" id="11"><img src="images/11.jpg" width="60px"></button> 
+</td><td>
+<span class="heros">Hero 11</span> <br>
+Power Boosts: <span class="numhero" id="h11">0</span> &nbsp; <span class="upmultiple" id="um11">0</span><br>
+<span class="cost" id="cost11"></span><br>
+</td></tr><tr><td>
+
+<button onclick="heroclick(5)" type="button" class="heroimage" id="6"><img src="images/6.jpg" width="60px"></button> 
+</td><td>
+<span class="heros">Hero 6</span> <br>
+Power Boosts: <span class="numhero" id="h6">0</span> &nbsp; <span class="upmultiple" id="um6">0</span><br>
+<span class="cost" id="cost6"></span><br>
+</td><td>
+
+<button onclick="heroclick(11)" type="button" class="heroimage" id="12"><img src="images/12.jpg" width="60px"></button> 
+</td><td>
+<span class="heros">Hero 12</span> <br>
+Power Boosts: <span class="numhero" id="h12">0</span> &nbsp; <span class="upmultiple" id="um12">0</span><br>
+<span class="cost" id="cost12"></span><br>
+</td></tr></table>
+
+</td></tr></table>
+</div>
+
+<script>
+/*
+var kongregate; 
+// Begin the process of loading the Kongregate API:
+kongregateAPI.loadAPI(onLoadCompleted);
+// Called when the API is finished loading 
+function onLoadCompleted(){
+   // Get a global reference to the kongregate API. This way, pages included in the
+   // iframe can access it by using "parent.kongregate"
+   kongregate = kongregateAPI.getAPI();
+} 
+*/
+
+var timeT = setInterval(timeTick, 500);
+var tickCount = 0;
+var power = 0;
+var money = 0;
+var reputation = 0;
+var monsterhp = 10000;
+var monsterhealth = 10000;
+var damage = 1;
+var hero1 = {quantity:0, profit:1, cost:10};
+var hero2 = {quantity:0, profit:5, cost:100};
+var hero3 = {quantity:0, profit:25, cost:1000};
+var hero4 = {quantity:0, profit:125, cost:10000};
+var hero5 = {quantity:0, profit:500, cost:100000};
+var hero6 = {quantity:0, profit:2500, cost:1000000};
+var hero7 = {quantity:0, profit:12500, cost:10000000};
+var hero8 = {quantity:0, profit:50000, cost:100000000};
+var hero9 = {quantity:0, profit:250000, cost:1000000000};
+var hero10 = {quantity:0, profit:1250000, cost:10000000000};
+var hero11 = {quantity:0, profit:5000000, cost:100000000000};
+var hero12 = {quantity:0, profit:25000000, cost:1000000000000};
+var allheroes = [hero1, hero2, hero3, hero4, hero5, hero6, hero7, hero8, hero9, hero10, hero11, hero12];
+var flag = false;
+var messagetime = 0;
+var manualmessagetime = 0;
+var powermax = 1000;
+//var upgrades = 1000000000;
+//var getmonster = Math.ceil((Math.random() * monsters) - 1);
+
+
+// Array for monster images
+var imgArray = new Array();
+var monsters = 5;
+
+for (var i = 0; i < monsters; i++){
+	imgArray[i] = new Image();
+	imgArray[i].src = 'monsters/monster' + (i+1) + '.jpg';
+}
+document.getElementById("monsterimg").src = imgArray[0].src;
+
+// Get saved data
+if( localStorage.money )	
+	money = parseInt(localStorage.getItem("money"));
+if( localStorage.reputation )
+	reputation = parseInt(localStorage.getItem("reputation"));
+if( localStorage.damage )
+	damage = parseInt(localStorage.getItem("damage"));
+if( localStorage.powermax )
+	powermax = parseInt(localStorage.getItem("powermax"));
+if( localStorage.monsterhp )
+	monsterhp = parseInt(localStorage.getItem("monsterhp"));
+if (localstorage.upgrades)
+	upgrades = parseInt(localStorage.getItem("upgrades"));
+if (localStorage.heroes_00 ){
+	allheroes[0].quantity = parseInt(localStorage.getItem("heroes_00"));
+/*
+	for (var pulled = 0; pulled < 12; pulled++) {
+		allheroes[pulled].quantity = parseInt(localStorage.getItem('heroes_0' + pulled));
+		allheroes[pulled].profit = parseInt(localStorage.getItem('heroes_1' + pulled));
+		allheroes[pulled].cost = parseInt(localStorage.getItem('heroes_2' + pulled));
+	}
+	*/
+}
+	
+//checkupgrades();
+printall();
+
+	
+function printall() {
+	document.getElementById("monster").innerHTML = monsterhealth;
+	document.getElementById("power").innerHTML = power;
+	document.getElementById("money").innerHTML = money;
+	document.getElementById("rep").innerHTML = reputation;
+	document.getElementById("cost1").innerHTML = "cost = $"  + allheroes[0].cost;	
+	document.getElementById("cost2").innerHTML = "cost = $"  + allheroes[1].cost;	
+	document.getElementById("cost3").innerHTML = "cost = $"  + allheroes[2].cost;	
+	document.getElementById("cost4").innerHTML = "cost = $"  + allheroes[3].cost;	
+	document.getElementById("cost5").innerHTML = "cost = $"  + allheroes[4].cost;	
+	document.getElementById("cost6").innerHTML = "cost = $"  + allheroes[5].cost;
+	document.getElementById("cost7").innerHTML = "cost = $"  + allheroes[6].cost;	
+	document.getElementById("cost8").innerHTML = "cost = $"  + allheroes[7].cost;	
+	document.getElementById("cost9").innerHTML = "cost = $"  + allheroes[8].cost;	
+	document.getElementById("cost10").innerHTML = "cost = $"  + allheroes[9].cost;	
+	document.getElementById("cost11").innerHTML = "cost = $"  + allheroes[10].cost;	
+	document.getElementById("cost12").innerHTML = "cost = $"  + allheroes[11].cost;
+	document.getElementById("h1").innerHTML = allheroes[0].quantity;
+	document.getElementById("h2").innerHTML = allheroes[1].quantity;
+	document.getElementById("h3").innerHTML = allheroes[2].quantity;
+	document.getElementById("h4").innerHTML = allheroes[3].quantity;
+	document.getElementById("h5").innerHTML = allheroes[4].quantity;
+	document.getElementById("h6").innerHTML = allheroes[5].quantity;	
+	document.getElementById("h7").innerHTML = allheroes[6].quantity;
+	document.getElementById("h8").innerHTML = allheroes[7].quantity;
+	document.getElementById("h9").innerHTML = allheroes[8].quantity;
+	document.getElementById("h10").innerHTML = allheroes[9].quantity;
+	document.getElementById("h11").innerHTML = allheroes[10].quantity;
+	document.getElementById("h12").innerHTML = allheroes[11].quantity;
+	document.getElementById("fightmess").innerHTML = "";
+}
+
+function timeTick() {
+	power = power + (allheroes[0].quantity * allheroes[0].profit) + (allheroes[1].quantity * allheroes[0].profit) + (allheroes[2].quantity * allheroes[0].profit) + 
+	(allheroes[3].quantity * allheroes[0].profit) + (allheroes[4].quantity * allheroes[0].profit) + (allheroes[5].quantity * allheroes[0].profit);
+	document.getElementById("power").innerHTML = power;	
+	if ((tickCount % 30 == 0) && (flag == false)) {
+		fightmonster();
+	}
+	if (messagetime != 0) {
+		messagetime--;
+	}else{
+		document.getElementById("fightmess").innerHTML = "";
+	}
+	if (manualmessagetime != 0) {
+		manualmessagetime--;
+	}else{
+		document.getElementById("action").innerHTML = "&nbsp; <br> &nbsp;";
+	}
+	powerbar();
+	updatesave();
+	printall();	
+ 	tickCount++;		
+}
+
+function manclick() {
+	var rand1 = Math.ceil(Math.random() * 5);
+	var rand2 = Math.ceil(Math.random() * 50);
+	if (rand2 == 50){
+		rand1 = rand1 * 50;
+	}
+	money = money + rand1;
+	var rand3 = Math.ceil(Math.random() * 3);
+	monsterhealth = monsterhealth - (rand3 * damage);
+	manualmessagetime = 6;	
+	document.getElementById("click").src = "images/clickblank.jpg";
+	document.getElementById("action").innerHTML = "You did <span style='color:red'>" + (rand3 * damage) + "</span> damage to the monster and you got <span style='color:red'>$" + rand1 + "</span>";
+	document.getElementById("money").innerHTML = money;
+	document.getElementById("monster").innerHTML = monsterhealth;
+}
+
+function upgrades(item) {
+	if (item == 0 && money >= 1000){			
+		damage = damage * 5;
+		money = money - 1000;
+		document.getElementById("up0").style = "display: none";
+		//upgrades = upgrades + 100000000;
+	}
+	if (item == 1 && money >= 5000){
+		allheroes[0].profit = allheroes[0].profit * 2;
+		money = money - 5000;
+		document.getElementById("up1").style = "display: none";
+		document.getElementById("um1").innerHTML = "x2";
+		//upgrades = upgrades + 10000000;
+	}
+	if (item == 2 && money >= 5000){
+		damage = damage * 5;
+		money = money - 5000;
+		document.getElementById("up2").style = "display: none";
+		//upgrades = upgrades + 1000000;
+	}
+	if (item == 3 && money >= 10000){
+		allheroes[1].profit = allheroes[1].profit * 2;
+		money = money - 10000;
+		document.getElementById("up3").style = "display: none";
+		document.getElementById("um2").innerHTML = "x2";
+		//upgrades = upgrades + 100000;
+	}
+	if (item == 4 && money >= 10000){
+		damage = damage * 5;
+		money = money - 10000;
+		document.getElementById("up4").style = "display: none";
+		//upgrades = upgrades + 10000;
+	}
+	if (item == 5 && money >= 20000){
+		allheroes[2].profit = allheroes[2].profit * 2;
+		money = money - 20000;
+		document.getElementById("up5").style = "display: none";
+		document.getElementById("um3").innerHTML = "x2";
+		//upgrades = upgrades + 1000;
+	}
+	if (item == 6 && money >= 20000){
+		damage = damage * 5;
+		money = money - 20000;
+		document.getElementById("up6").style = "display: none";
+		//upgrades = upgrades + 100;
+	}
+	if (item == 7 && money >= 40000){
+		allheroes[3].profit = allheroes[3].profit * 2;
+		money = money - 40000;
+		document.getElementById("up7").style = "display: none";
+		document.getElementById("um4").innerHTML = "x2";
+		//upgrades = upgrades + 10;
+	}
+	if (item == 8 && money >= 40000){
+		damage = damage * 5;
+		money = money - 40000;
+		document.getElementById("up8").style = "display: none";
+		//upgrades = upgrades + 1;
+	}
+	document.getElementById("money").innerHTML = money;
+}
+
+function heroclick(i) {
+	if (money >= allheroes[i].cost){
+		money = money - allheroes[i].cost;
+		allheroes[i].cost = allheroes[i].cost + Math.ceil(allheroes[i].cost/10);
+		allheroes[i].quantity = allheroes[i].quantity + 1;
+		printall();		
+	}
+}
+
+function fightmonster() {
+	var rand4 = Math.ceil(Math.random() * 10);
+	if (rand4 == 10) {
+		monsterhealth = monsterhealth - (power * 3);
+		document.getElementById("fightmess").innerHTML = "Your team did x3 power damage!!";
+		messagetime = 10;
+	} else {
+		monsterhealth = monsterhealth - power*5;
+	}
+	power = 0;
+	if (monsterhealth <= 0){
+		killmonster();
+	}
+	document.getElementById("money").innerHTML = money;
+	document.getElementById("monster").innerHTML = monsterhealth;
+	document.getElementById("rep").innerHTML = reputation;
+	monsterbar();
+}
+
+function monsterbar() {
+    var elem = document.getElementById("monsterbar");   
+	var mwidth = (monsterhealth/monsterhp)*100;
+	elem.style.width = mwidth + '%';
+} 
+
+function powerbar() {
+	var pwidth = (power/powermax) * 100;
+	if (pwidth > 100){
+		pwidth = 100;
+	}
+	document.getElementById("powerbar").style.width = pwidth + '%';
+}
+
+function killmonster() {
+	monsterhealth = 0;
+	document.getElementById("monster").innerHTML = monsterhealth;
+	money = money + Math.ceil(monsterhp/10);
+	reputation = reputation + Math.ceil(monsterhp/20);
+	flag = true;
+	document.getElementById("monsterimg").src = "images/victorious.jpg";
+	setTimeout(newmonster, 2000);
+	powermax = Math.ceil(powermax + powermax/20);	
+}
+
+function newmonster() {
+	getmonster = Math.ceil((Math.random() * monsters) - 1);
+	document.getElementById("monsterimg").src = imgArray[getmonster].src;
+	monsterhp = monsterhp + Math.ceil(monsterhp/20);
+	monsterhealth = monsterhp;
+	monsterbar();
+	document.getElementById("monster").innerHTML = monsterhealth;
+	flag = false;
+}
+
+function openNav() {
+    document.getElementById("myNav").style.height = "100%";
+}
+
+function closeNav() {
+    document.getElementById("myNav").style.height = "0%";
+}
+
+function updatesave(){
+	// Update saved data
+	localStorage.setItem("money", money);
+	localStorage.setItem("reputation", reputation);
+	localStorage.setItem("damage", damage);
+	localStorage.setItem("powermax", powermax);
+	localStorage.setItem("monsterhp", monsterhp);
+	localStorage.setItem("heroes_00", allheroes[0].quantity);	
+/*
+	for (var saved = 0; saved < 12; saved++){
+		localStorage.setItem('heroes_0' + saved, allheroes[saved].quantity);
+		localStorage.setItem('heroes_1' + saved, allheroes[saved].profit);
+		localStorage.setItem('heroes_2' + saved, allheroes[saved].cost);
+	}
+*/
+}
+
+/*
+function checkupgrades() {
+var digit = Math.floor((upgrades / 1) % 10)
+if (digit == 1){
+	document.getElementById("up0").style = "display: none";
+	}
+}
+*/
+</script>
+</body>
+</html>
+
+
