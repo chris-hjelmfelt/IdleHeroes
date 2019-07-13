@@ -20,7 +20,7 @@ h3 {
 }
 
 #monsterimg {
-	width: 100%
+	width: 100%;
 	border: 2px solid black;	
 }
 
@@ -29,19 +29,45 @@ h3 {
 	border: 2px solid black;
 }
 
-.numhero {
+#choose {
+	display: none;
+}
+
+.avatar {
+	border: 2px solid black;
+}
+
+.monsterstr {
+	color: #009999;
+	font-size: 14px;
+}
+
+.heroes {
 	color: #009999;
 	font-size: 16px;
+}
+
+.boosts {
+	font-size: 14px;
+	visibility:hidden;
+}
+
+.numhero {
+	color: #009999;
+	font-size: 14px;
+	visibility:hidden;
 }
 
 .upmultiple{
 	color: #009999;
 	font-size: 12px;
+	visibility:hidden;
 }
 
 .cost {
 	color: black;
 	font-size: 10px;
+	visibility:hidden;
 }
 
 .fightmess {
@@ -72,15 +98,6 @@ h3 {
 	border: 2px solid black;
 	transition: 0.3s;	
 }
-button.hover{
-	background-color: #0099FF;
-	color: white;	
-}
-
-button.active{
-	background-color: #009999;
-	color: black;
-}
 
 .heros {
 	color: #009900;
@@ -97,6 +114,19 @@ button.active{
 	padding: 10px;
 	font-size: 20px;	
 }
+
+
+button.hover{
+	background-color: #0099FF;
+	color: white;	
+}
+
+button.active{
+	background-color: #009999;
+	color: black;
+}
+
+
 
 #myProgress {
     width: 100%;
@@ -116,6 +146,13 @@ button.active{
     background-color: red;
 }
 
+#notes {
+	color: #009999;
+	font-size: 12px;
+}
+
+
+/* Overlay for Upgrades */
 .overlay {
     height: 0%;
     width: 45%;
@@ -133,14 +170,14 @@ button.active{
     position: relative;
     top: 25%;
     width: 100%;
-    text-align: center;
-    margin-top: 30px;
+    text-align: left;
+    margin-top: 26px;
 }
 
 .overlay a {
     padding: 8px;
     text-decoration: none;
-    font-size: 30px;
+    font-size: 26px;
     color: #009999;
     display: block;
     transition: 0.3s;
@@ -166,3 +203,19 @@ button.active{
     right: 35px;
   }
 }
+/* End Overlay */
+
+
+ /* Container for Click Here and Attack Message */
+.container {
+    position: relative;
+}
+
+/* Action Message text */
+.text-block {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+} 
