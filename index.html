@@ -5,11 +5,10 @@
 //
 //
 // TO DO:  
+// Put max on monster strength, money etc. to prevent errors - use: Number.MAX_SAFE_INTEGER
 // Fix text overflow at 3 digit attack damage
-// Hero names
-// title screen with choice of personal avatar
+// more hero stats
 // more monster pics,  
-// hero stories and powers,
 // new kinds of upgrades 
 // monster powers: 
 // (stun - no power gain for a couple of seconds, hide treasure - need an upgrade to find,
@@ -19,422 +18,200 @@
 < ------------------------------------------------------------------------------>
 
 <head>
-<title>Idle Heroes vs Monsters</title>
-<!-- Main style sheet -->
-<link rel="stylesheet" type="text/css" href="style.css">
-<!-- Javascript functions related to saving data -->
-<script type="text/javascript" src="saves.js"></script>
-<!-- Javascript functions related to upgrades -->
-<script type="text/javascript" src="upgrades.js"></script>
-<!-- Javascript functions related to heroes -->
-<script type="text/javascript" src="heroes.js"></script>
+	<title>Idle Heroes vs Monsters</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
-<div align="center">
-<table width="100%"><tr>
-<td valign="top" align="center" width="38%">
-<table><tr><td width="100%">
-<img src="monsters/monster1.jpg" width="300px" height="450px"id="monsterimg"><br>
-<h3>Monster Strength</h3> <div id="myProgress"><div id="monsterbar"></div></div> 
-<span class="monsterstr" id="monster">0</span><br>
-<span id="fightmess"></span>
-&nbsp; <br>
-</td></tr></table>
-
-<table width="50%"><tr><td valign="center" align="center" width="50%">
-<img src="images/hero.jpg" width="80px" border="2"><br>
-</td><td>
-<table width="100%"><tr><td>
- <div class="container">
-  <img src="images/click.jpg" id="click" width="100%">
-  <div class="text-block">
-    <span class="actionmess" id="action"></span>
-  </div>
-</div> 
-
-</td></tr><tr><td>
-<button onclick="manclick()" type="button" class="bigbuttons" id="manual">Attack</button>
-</td></tr></table>
-</td></tr></table>
-&nbsp; <br>
-
-<span style="font-size:30px;cursor:pointer" class="bigbuttons" onclick="openUpgrades()">Upgrades</span>
-<div id="myNav" class="overlay">
-	<a href="javascript:void(0)" class="closebtn" onclick="closeUpgrades()">&times;</a>
-	<div class="overlay-content">
-		<a href="javascript:void(0)" onclick="upgrades(0)" id="up0" style="display:none;">X5 Power to Manual Attack $1000</a> 
-		<a href="javascript:void(0)" onclick="upgrades(1)" id="up1" style="display:none;">X2 Power to Hero 1 $5000</a>
-		<a href="javascript:void(0)" onclick="upgrades(2)" id="up2" style="display:none;">X5 Power to Manual Attack $10000</a>
-		<a href="javascript:void(0)" onclick="upgrades(3)" id="up3" style="display:none;">X2 Power to Hero 2 $10000</a>
-		<a href="javascript:void(0)" onclick="upgrades(4)" id="up4" style="display:none;">X5 Power to Manual Attack $50000</a>
-		<a href="javascript:void(0)" onclick="upgrades(5)" id="up5" style="display:none;">X2 Power to Hero 3 $50000</a>
-		<a href="javascript:void(0)" onclick="upgrades(6)" id="up6" style="display:none;">X5 Power to Manual Attack $100000</a>
-		<a href="javascript:void(0)" onclick="upgrades(7)" id="up7" style="display:none;">X2 Power to Hero 4 $100000</a>
-		<a href="javascript:void(0)" onclick="upgrades(8)" id="up8" style="display:none;">X5 Power to Manual Attack $500000</a>
-		<a href="javascript:void(0)" onclick="upgrades(9)" id="up9" style="display:none;">X2 Power to Hero 5 $500000</a>
-	</div>
-</div>
-</td><td width="2%">
-
-</td><td valign="top" width="60%">
-<h2>Power</h2>
-<div id="myProgress"><div id="powerbar"></div></div> <span class="numhero" id="power">0</span><br>
-&nbsp; <br>
-<table width="100%"tr><td valign="top" width="25%">
-<h3>$</h3> <span id="money">0</span>
-</td><td>
-<h3>Reputation</h3> <span id="rep">0</span>
-</td></tr></table>
-
-&nbsp; <br>
-&nbsp; <br>
-<table width="100%" border="2" cellpadding="10"><tr><td width="18%">
-<button onclick="heroclick(0)" type="button" class="heroimage" id="1"><img src="images/1.jpg" width="60px"></button> 
-</td><td width="32%">
-<span class="heroes" id="hero1">Hero 1</span> <br>
-<span class="boosts" id="b1" >Power Boosts:</span> <span class="numhero" id="h1">0</span> &nbsp; <span class="upmultiple" id="um1"></span><br>
-<span class="cost" id="cost1"></span><br>
-</td><td width="18%">
-
-<button onclick="heroclick(6)" type="button" class="heroimage" id="7" style="display:none;"><img src="images/7.jpg" width="60px"></button> 
-</td><td width="32%">
-<span class="heroes" id="hero7">Hero 7</span> <br>
-<span class="boosts" id="b7">Power Boosts:</span> <span class="numhero" id="h7">0</span> &nbsp; <span class="upmultiple" id="um7"></span><br>
-<span class="cost" id="cost7"></span><br>
-</td></tr><tr><td>
-
-<button onclick="heroclick(1)" type="button" class="heroimage" id="2" style="display:none;"><img src="images/2.jpg" width="60px"></button> 
-</td><td>
-<span class="heroes" id="hero2">Hero 2</span> <br>
-<span class="boosts" id="b2">Power Boosts:</span> <span class="numhero" id="h2">0</span> &nbsp; <span class="upmultiple" id="um2"></span><br>
-<span class="cost" id="cost2"></span><br>
-</td><td>
-
-<button onclick="heroclick(7)" type="button" class="heroimage" id="8" style="display:none;"><img src="images/8.jpg" width="60px"></button> 
-</td><td>
-<span class="heroes" id="hero8">Hero 8</span> <br>
-<span class="boosts" id="b8">Power Boosts:</span> <span class="numhero" id="h8">0</span> &nbsp; <span class="upmultiple" id="um8"></span><br>
-<span class="cost" id="cost8"></span><br>
-</td></tr><tr><td>
-
-<button onclick="heroclick(2)" type="button" class="heroimage" id="3" style="display:none;"><img src="images/3.jpg" width="60px"></button> 
-</td><td>
-<span class="heroes"  id="hero3">Hero 3</span> <br>
-<span class="boosts" id="b3">Power Boosts:</span> <span class="numhero" id="h3">0</span> &nbsp; <span class="upmultiple" id="um3"></span><br>
-<span class="cost" id="cost3"></span><br>
-</td><td>
-
-<button onclick="heroclick(8)" type="button" class="heroimage" id="9" style="display:none;"><img src="images/9.jpg" width="60px"></button> 
-</td><td>
-<span class="heroes" id="hero9">Hero 9</span> <br>
-<span class="boosts" id="b9">Power Boosts:</span> <span class="numhero" id="h9">0</span> &nbsp; <span class="upmultiple" id="um9"></span><br>
-<span class="cost" id="cost9"></span><br>
-</td></tr><tr><td>
-
-<button onclick="heroclick(3)" type="button" class="heroimage" id="4" style="display:none;"><img src="images/4.jpg" width="60px"></button> 
-</td><td>
-<span class="heroes" id="hero4">Hero 4</span> <br>
-<span class="boosts" id="b4">Power Boosts:</span> <span class="numhero" id="h4">0</span> &nbsp; <span class="upmultiple" id="um4"></span><br>
-<span class="cost" id="cost4"></span><br>
-</td><td>
-
-<button onclick="heroclick(9)" type="button" class="heroimage" id="10" style="display:none;"><img src="images/10.jpg" width="60px"></button> 
-</td><td>
-<span class="heroes" id="hero10">Hero 10</span> <br>
-<span class="boosts" id="b10">Power Boosts:</span> <span class="numhero" id="h10">0</span> &nbsp; <span class="upmultiple" id="um10"></span><br>
-<span class="cost" id="cost10"></span><br>
-</td></tr><tr><td>
-
-<button onclick="heroclick(4)" type="button" class="heroimage" id="5" style="display:none;"><img src="images/5.jpg" width="60px"></button> 
-</td><td>
-<span class="heroes" id="hero5">Hero 5</span> <br>
-<span class="boosts" id="b5">Power Boosts:</span> <span class="numhero" id="h5">0</span> &nbsp; <span class="upmultiple" id="um5"></span><br>
-<span class="cost" id="cost5"></span><br>
-</td><td>
-
-<button onclick="heroclick(10)" type="button" class="heroimage" id="11" style="display:none;"><img src="images/11.jpg" width="60px"></button> 
-</td><td>
-<span class="heroes" id="hero11">Hero 11</span> <br>
-<span class="boosts" id="b11">Power Boosts:</span> <span class="numhero" id="h11">0</span> &nbsp; <span class="upmultiple" id="um11"></span><br>
-<span class="cost" id="cost11"></span><br>
-</td></tr><tr><td>
-
-<button onclick="heroclick(5)" type="button" class="heroimage" id="6" style="display:none;"><img src="images/6.jpg" width="60px"></button> 
-</td><td>
-<span class="heroes" id="hero6">Hero 6</span> <br>
-<span class="boosts" id="b6">Power Boosts:</span> <span class="numhero" id="h6">0</span> &nbsp; <span class="upmultiple" id="um6"></span><br>
-<span class="cost" id="cost6"></span><br>
-</td><td>
-
-<button onclick="heroclick(11)" type="button" class="heroimage" id="12" style="display:none;"><img src="images/12.jpg" width="60px"></button> 
-</td><td>
-<span class="heroes" id="hero12">Hero 12</span> <br>
-<span class="boosts" id="b12">Power Boosts:</span> <span class="numhero" id="h12">0</span> &nbsp; <span class="upmultiple" id="um12"></span><br>
-<span class="cost" id="cost12"></span><br>
-</td></tr></table>
-<span id="notes">More heroes will show up as your reputation grows.<br>
- Buy your heroes power boosts to help them fight.</span>
-<span id="testing"></span>
-</td></tr></table>
-</div>
-<script>
-
-// -------------------------------
-// KONGREGATE API
-// -------------------------------
-/* 
-var kongregate; 
-// Begin the process of loading the Kongregate API:
-kongregateAPI.loadAPI(onLoadCompleted);
-// Called when the API is finished loading 
-function onLoadCompleted(){
-   // Get a global reference to the kongregate API. This way, pages included in the
-   // iframe can access it by using "parent.kongregate"
-   kongregate = kongregateAPI.getAPI();
-} 
-*/
-
-
-// --------------------
-// VARIABLES
-// --------------------
-var timeT = setInterval(timeTick, 500);
-var tickCount = 0;
-var power = 0;
-var money = 0;
-var reputation = 0;
-var monsterhp = 2000;
-var monstermax = 2000;
-var monsterhealth = 2000;
-var damage = 1;
-var deadmonsterflag = false;
-var messagetime = 0;
-var manualmessagetime = 0;
-var powermax = 200;
-var powertick = 0;
-var killtick = 0;
-var pwidth = 0;
-var testmess = "";
-var selfupgrades = 0;
-var heroupgrades = 0;
-var firstshots = 5;
-
-// Array for monster images
-var imgArray = new Array();
-var monsters = 7;
-for (var i = 0; i < monsters; i++){
-	imgArray[i] = new Image();
-	imgArray[i].src = 'monsters/monster' + (i+1) + '.jpg';
-}
-
-// Setup Game
-getsaves();
-setupHeroes();
-displayUpgrades();
-displayHeroUpgrades();
-
-// used for mischance
-if (selfupgrades > 3)
-	selfupgrades = 3;
-
-getmonster();
-printall();
-
-// -----------------------------------------
-// FUNCTIONS 
-// -----------------------------------------
-
-// Update values displayed in HTML
-function printall() {
-	document.getElementById("monster").innerHTML = monsterhealth;
-	document.getElementById("power").innerHTML = power;
-	document.getElementById("money").innerHTML = money;
-	document.getElementById("rep").innerHTML = reputation;
-	document.getElementById("cost1").innerHTML = "cost = $"  + allheroes[0].cost;	
-	document.getElementById("cost2").innerHTML = "cost = $"  + allheroes[1].cost;	
-	document.getElementById("cost3").innerHTML = "cost = $"  + allheroes[2].cost;	
-	document.getElementById("cost4").innerHTML = "cost = $"  + allheroes[3].cost;	
-	document.getElementById("cost5").innerHTML = "cost = $"  + allheroes[4].cost;	
-	document.getElementById("cost6").innerHTML = "cost = $"  + allheroes[5].cost;
-	document.getElementById("cost7").innerHTML = "cost = $"  + allheroes[6].cost;	
-	document.getElementById("cost8").innerHTML = "cost = $"  + allheroes[7].cost;	
-	document.getElementById("cost9").innerHTML = "cost = $"  + allheroes[8].cost;	
-	document.getElementById("cost10").innerHTML = "cost = $"  + allheroes[9].cost;	
-	document.getElementById("cost11").innerHTML = "cost = $"  + allheroes[10].cost;	
-	document.getElementById("cost12").innerHTML = "cost = $"  + allheroes[11].cost;
-	document.getElementById("h1").innerHTML = allheroes[0].quantity;
-	document.getElementById("h2").innerHTML = allheroes[1].quantity;
-	document.getElementById("h3").innerHTML = allheroes[2].quantity;
-	document.getElementById("h4").innerHTML = allheroes[3].quantity;
-	document.getElementById("h5").innerHTML = allheroes[4].quantity;
-	document.getElementById("h6").innerHTML = allheroes[5].quantity;	
-	document.getElementById("h7").innerHTML = allheroes[6].quantity;
-	document.getElementById("h8").innerHTML = allheroes[7].quantity;
-	document.getElementById("h9").innerHTML = allheroes[8].quantity;
-	document.getElementById("h10").innerHTML = allheroes[9].quantity;
-	document.getElementById("h11").innerHTML = allheroes[10].quantity;
-	document.getElementById("h12").innerHTML = allheroes[11].quantity;
-	document.getElementById("fightmess").innerHTML = "";
-	document.getElementById("testing").innerHTML = testmess;
-}
-
-
-// Stuff that happens on regular time intervals
-function timeTick() {
-	power = power + (allheroes[0].quantity * allheroes[0].profit) + (allheroes[1].quantity * allheroes[0].profit) + (allheroes[2].quantity * allheroes[0].profit) + 
-	(allheroes[3].quantity * allheroes[0].profit) + (allheroes[4].quantity * allheroes[0].profit) + (allheroes[5].quantity * allheroes[0].profit);
-	document.getElementById("power").innerHTML = power;	
-	if (messagetime != 0) {
-		messagetime--;
-	}else{
-		document.getElementById("fightmess").innerHTML = "";
-	}
-	if (manualmessagetime != 0) {
-		manualmessagetime--;
-	}else{
-		document.getElementById("action").innerHTML = "&nbsp; <br> &nbsp;";
-	}
-	powerbar();
-	updatesaves();
-	printall();	
- 	tickCount++;		
-}
-
-
-// Functionality for the Attack button
-function manclick() {
-	if (deadmonsterflag == false){
-		document.getElementById("click").src = "images/clickblank.jpg";
-		manualmessagetime = 3;	
-		
-		var rand1 = Math.ceil(Math.random() * 10);
-		var rand2 = Math.ceil(Math.random() * 50);
-		if (rand1 > 5){
-			rand1 = 0;
-		}
-		if (rand2 == 50){
-			rand1 = rand1 * 50;
-		}
-		
-		if (firstshots > 0){
-			misschance = 0;
-			firstshots--;
-			rand1 = Math.ceil(Math.random() * 5);
-		} else { misschance = 3 - selfupgrades; }
-		
-		money = money + rand1;
-		
-		var rand3 = Math.ceil(Math.random() * (3 + misschance));
-		if (rand3 > 3){
-			rand3 = 0;
-		}
-		
-		monsterhealth = monsterhealth - (rand3 * damage);
-		
-		if (monsterhealth <= 0){
-			killmonster(1);
-		}
+	<!--<div class="pageWidth" align="center">-->
+		<table width="100%" id="mainTable"><tr>
+			<td valign="top" align="center" width="35%" id="leftSide">
+				<table><tr><td width="100%" colspan="2">
+					<img src="monsters/monster1.jpg" width="300px" height="450px" id="monsterimg"><br>
+					</td></tr><tr><td width="50%">
+					<h4>Monster Strength</h4> 
+					</td><td align="right">
+					<span class="monsterstr" id="monster">0</span>
+					</td></tr><tr><td colspan="2">
+					<div id="myProgress"><div id="monsterbar"></div></div> 					
+				</td></tr></table>
 				
-		if (rand3 > 0) {
-			if (rand1 > 0) {
-				document.getElementById("action").innerHTML = "You did <span style='color:red'>" + (rand3 * damage) + "</span> damage to the monster and you got <span style='color:red'>$" + rand1 + "</span>";
-			} else {
-				document.getElementById("action").innerHTML = "You did <span style='color:red'>" + (rand3 * damage) + "</span> damage to the monster.";
-			}
-		} else {
-			document.getElementById("action").innerHTML = "You Missed";
-		}
-		document.getElementById("money").innerHTML = money;
-		document.getElementById("monster").innerHTML = monsterhealth;
-		monsterbar();
-	}
-}
+				<span id="fightmess"></span><br>
+				
+				<table width="100%"><tr>
+					<td valign="top" align="left" width="35%">					
+						<img src="images/MainChar-Female1.png" width="85%" border="2" id="charImage"><br>
+						<button onclick="genderSelect('f')" type="button" class="tinybuttons" id="female">F</button>&nbsp;<button onclick="genderSelect('m')" type="button" class="tinybuttons" id="male">M</button>
+					</td><td  valign="top">
+						<table width="100%"><tr><td>
+							<div class="container">
+								<img src="images/click.jpg" id="click">
+								<div class="text-block"><span class="actionmess" id="action"></span></div></div> 
+						</td></tr><tr><td>
+							<button onclick="manclick()" type="button" class="bigbuttons" id="manual">Attack</button><br>
+							<button onclick="openUpgrades()" type="button" class="smbuttons" id="manual">Upgrades</button>
+						</td></tr></table>
+					</td></tr>
+				</table>				
+			
+			</td><td width="2%" id="centerSpace">
+			
+			</td><td valign="top" align="center" id="rightSide">		
+				<table width="100%" id="assets"><tr><td valign="top" width="25%">
+					<h2>$</h2> <span id="money">0</span>
+					</td><td>
+					<h3>Reputation</h3> <span id="rep">0</span>
+				</td></tr></table>			
+			
+				<table width="100%" border="2" cellpadding="5"><tr><td width="18%">
+					<button onclick="heroclick(0)" type="button" class="heroimage" id="1"><img src="images/hero1.png" width="100%"></button> 
+				</td><td width="32%">
+					<span class="heroes" id="hero1">John the Farmer's Son</span> <br>
+					<span class="boosts" id="b1" >Power Boosts:</span> <span class="numhero" id="h1">0</span> &nbsp; <span class="upmultiple" id="um1"></span><br>
+					<span class="cost" id="cost1"></span> &nbsp;<span class="power" id="pow1"></span><br>
+					<button onclick="openStory(1)" type="button" class="storyButton" id="story1">Story</button>
+					<span class="rep" id="rep1"></span>
+				</td><td width="18%">
 
+					<button onclick="heroclick(6)" type="button" class="heroimage" id="7" style="display:none;"><img src="images/hero7.png" width="100%"></button> 
+				</td><td width="32%">
+					<span class="heroes" id="hero7">Hero 7</span> <br>
+					<span class="boosts" id="b7">Power Boosts:</span> <span class="numhero" id="h7">0</span> &nbsp; <span class="upmultiple" id="um7"></span><br>
+					<span class="cost" id="cost7"></span> &nbsp;<span class="power" id="pow7"></span><br>
+					<button onclick="openStory(7)" type="button" class="storyButton" id="story7">Story</button>
+					<span class="rep" id="rep7">Reputation Needed: 10M</span>
+				</td></tr><tr><td>
 
-// Increases the Power bar level and when it gets full attacks the monster
-function powerbar() {
-	pwidth = (power/powermax) * 100;
-	if (pwidth >= 100){
-		pwidth = 100;		
-		if (powertick < 10) {  // powerbar size should increase over time
-			powermax = powermax + Math.ceil(powermax/10);
-		}
-		powertick = 0;
-		if (deadmonsterflag == false){
-			fightmonster();			
-		} else { power = 0; }
-	} else { powertick++; }
-	document.getElementById("powerbar").style.width = pwidth + '%';	
-}
+					<button onclick="heroclick(1)" type="button" class="heroimage" id="2" style="display:none;"><img src="images/hero2.png" width="100%"></button> 
+				</td><td>
+					<span class="heroes" id="hero2">Hero 2</span> <br>
+					<span class="boosts" id="b2">Power Boosts:</span> <span class="numhero" id="h2">0</span> &nbsp; <span class="upmultiple" id="um2"></span><br>
+					<span class="cost" id="cost2"></span> &nbsp;<span class="power" id="pow2"></span><br>
+					<button onclick="openStory(2)" type="button" class="storyButton" id="story2">Story</button>
+					<span class="rep" id="rep2">Reputation Needed: 200</span>
+				</td><td>
 
+					<button onclick="heroclick(7)" type="button" class="heroimage" id="8" style="display:none;"><img src="images/hero8.png" width="100%"></button> 
+				</td><td>
+					<span class="heroes" id="hero8">Hero 8</span> <br>
+					<span class="boosts" id="b8">Power Boosts:</span> <span class="numhero" id="h8">0</span> &nbsp; <span class="upmultiple" id="um8"></span><br>
+					<span class="cost" id="cost8"></span> &nbsp;<span class="power" id="pow8"></span><br>
+					<button onclick="openStory(8)" type="button" class="storyButton" id="story8">Story</button>
+					<span class="rep" id="rep8">Reputation Needed: 100M</span>
+				</td></tr><tr><td>
 
-// The heroes fight the monster 
-function fightmonster() {
-	var rand4 = Math.ceil(Math.random() * 10);
-	if (rand4 == 10) {
-		monsterhealth = monsterhealth - (power * 3);
-		document.getElementById("fightmess").innerHTML = "Your team did x3 power damage!!";
-		messagetime = 10;
-	} else {
-		monsterhealth = monsterhealth - power;
-	}
-	power = 0;
-	if (monsterhealth <= 0){			
-		killmonster(2);
-	} else { killtick++; }
-	document.getElementById("money").innerHTML = money;
-	document.getElementById("monster").innerHTML = monsterhealth;
-	document.getElementById("rep").innerHTML = reputation;
-	monsterbar();
-}
+					<button onclick="heroclick(2)" type="button" class="heroimage" id="3" style="display:none;"><img src="images/hero3.png" width="100%"></button> 
+				</td><td>
+					<span class="heroes"  id="hero3">Hero 3</span> <br>
+					<span class="boosts" id="b3">Power Boosts:</span> <span class="numhero" id="h3">0</span> &nbsp; <span class="upmultiple" id="um3"></span><br>
+					<span class="cost" id="cost3"></span> &nbsp;<span class="power" id="pow3"></span><br>
+					<button onclick="openStory(3)" type="button" class="storyButton" id="story3">Story</button>
+					<span class="rep" id="rep3">Reputation Needed: 1K</span>
+				</td><td>
 
+					<button onclick="heroclick(8)" type="button" class="heroimage" id="9" style="display:none;"><img src="images/hero9.png" width="100%"></button> 
+				</td><td>
+					<span class="heroes" id="hero9">Hero 9</span> <br>
+					<span class="boosts" id="b9">Power Boosts:</span> <span class="numhero" id="h9">0</span> &nbsp; <span class="upmultiple" id="um9"></span><br>
+					<span class="cost" id="cost9"></span> &nbsp;<span class="power" id="pow9"></span><br>
+					<button onclick="openStory(9)" type="button" class="storyButton" id="story9">Story</button>
+					<span class="rep" id="rep9">Reputation Needed: 1T</span>
+				</td></tr><tr><td>
 
-// updating the Monster Strength bar, when it's empty the monster dies
-function monsterbar() {
-    var elem = document.getElementById("monsterbar"); 
-	if (monsterhealth > 0) {	
-		var mwidth = (monsterhealth/monsterhp) * 100;
-	} else {
-		var mwidth = 0;
-	}
-	elem.style.width = mwidth + '%';
-} 
+					<button onclick="heroclick(3)" type="button" class="heroimage" id="4" style="display:none;"><img src="images/hero4.png" width="100%"></button> 
+				</td><td>
+					<span class="heroes" id="hero4">Hero 4</span> <br>
+					<span class="boosts" id="b4">Power Boosts:</span> <span class="numhero" id="h4">0</span> &nbsp; <span class="upmultiple" id="um4"></span><br>
+					<span class="cost" id="cost4"></span> &nbsp;<span class="power" id="pow4"></span><br>
+					<button onclick="openStory(4)" type="button" class="storyButton" id="story4">Story</button>
+					<span class="rep" id="rep4">Reputation Needed: 10K</span>
+				</td><td>
 
+					<button onclick="heroclick(9)" type="button" class="heroimage" id="10" style="display:none;"><img src="images/hero10.png" width="100%"></button> 
+				</td><td>
+					<span class="heroes" id="hero10">Hero 10</span> <br>
+					<span class="boosts" id="b10">Power Boosts:</span> <span class="numhero" id="h10">0</span> &nbsp; <span class="upmultiple" id="um10"></span><br>
+					<span class="cost" id="cost10"></span> &nbsp;<span class="power" id="pow10"></span><br>
+					<button onclick="openStory(10)" type="button" class="storyButton" id="story10">Story</button>
+					<span class="rep" id="rep10">Reputation Needed: 10T</span>
+				</td></tr><tr><td>
 
-// What happens when the heroes kill the monster
-function killmonster(which) {
-	deadmonsterflag = true;
-	monsterhealth = 0;
-	document.getElementById("monster").innerHTML = monsterhealth;
-	document.getElementById("monsterimg").src = "images/victorious.jpg";	
-	if (killtick < 10) {  // powerbar size should increase over time
-		monstermax = monstermax + Math.ceil(monsterhp/10);
-	}
-	killtick = Math.ceil(Math.random() * 4);	
-	if (which == 2){  // If it was heroes that did the kill shot
-		power = 0;
-		powertick = 0;
-	}
-	money = money + Math.ceil(monsterhp/10);
-	reputation = reputation + Math.ceil(monsterhp/20);
-	setupHeroes();
-	setTimeout(getmonster, 2000);	
-}
+					<button onclick="heroclick(4)" type="button" class="heroimage" id="5" style="display:none;"><img src="images/hero5.png" width="100%"></button> 
+				</td><td>
+					<span class="heroes" id="hero5">Hero 5</span> <br>
+					<span class="boosts" id="b5">Power Boosts:</span> <span class="numhero" id="h5">0</span> &nbsp; <span class="upmultiple" id="um5"></span><br>
+					<span class="cost" id="cost5"></span> &nbsp;<span class="power" id="pow5"></span><br>
+					<button onclick="openStory(5)" type="button" class="storyButton" id="story5">Story</button>
+					<span class="rep" id="rep5">Reputation Needed: 100K</span>
+				</td><td>
 
+					<button onclick="heroclick(10)" type="button" class="heroimage" id="11" style="display:none;"><img src="images/hero11.png" width="100%"></button> 
+				</td><td>
+					<span class="heroes" id="hero11">Hero 11</span> <br>
+					<span class="boosts" id="b11">Power Boosts:</span> <span class="numhero" id="h11">0</span> &nbsp; <span class="upmultiple" id="um11"></span><br>
+					<span class="cost" id="cost11"></span> &nbsp;<span class="power" id="pow11"></span><br>
+					<button onclick="openStory(11)" type="button" class="storyButton" id="story11">Story</button>
+					<span class="rep" id="rep11">Reputation Needed: 100T</span>
+				</td></tr><tr><td>
 
-// Displaying a new monster 
-function getmonster() {
-	newmonster = Math.ceil((Math.random() * monsters) - 1);
-	document.getElementById("monsterimg").src = imgArray[newmonster].src;
-	monsterhp = monstermax + Math.ceil(Math.random() * Math.ceil(monstermax/8)) - Math.ceil(Math.random() * Math.ceil(monstermax/8));
-	monsterhealth = monsterhp;
-	monsterbar();
-	document.getElementById("monster").innerHTML = monsterhealth;
-	deadmonsterflag = false;
-}
+					<button onclick="heroclick(5)" type="button" class="heroimage" id="6" style="display:none;"><img src="images/hero6.png" width="100%"></button> 
+				</td><td>
+					<span class="heroes" id="hero6">Hero 6</span> <br>
+					<span class="boosts" id="b6">Power Boosts:</span> <span class="numhero" id="h6">0</span> &nbsp; <span class="upmultiple" id="um6"></span><br>
+					<span class="cost" id="cost6"></span> &nbsp;<span class="power" id="pow6"></span><br>
+					<button onclick="openStory(6)" type="button" class="storyButton" id="story6">Story</button>
+					<span class="rep" id="rep6">Reputation Needed: 1M</span>
+				</td><td>
 
-</script>
+					<button onclick="heroclick(11)" type="button" class="heroimage" id="12" style="display:none;"><img src="images/hero12.png" width="100%"></button> 
+				</td><td>
+					<span class="heroes" id="hero12">Hero 12</span> <br>
+					<span class="boosts" id="b12">Power Boosts:</span> <span class="numhero" id="h12">0</span> &nbsp; <span class="upmultiple" id="um12"></span><br>
+					<span class="cost" id="cost12"></span> &nbsp;<span class="power" id="pow12"></span><br>
+					<button onclick="openStory(12)" type="button" class="storyButton" id="story12">Story</button>
+					<span class="rep" id="rep12">Reputation Needed: 1B</span>
+				</td></tr></table>
+
+				<span id="notes"> Buy your heroes power boosts to help them fight.</span><br>
+				<span id="testing"></span>
+				
+			</td></tr>
+		</table>
+	<!--</div>-->
+
+	<div id="myNav" class="overlay">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeUpgrades()">&times;</a>
+		<div class="overlay-content">
+			<a href="javascript:void(0)" onclick="upgrades(0)" id="up0" style="display:none;">X5 Power to Manual Attack $1000</a> 
+			<a href="javascript:void(0)" onclick="upgrades(1)" id="up1" style="display:none;">X2 Power to Hero 1 $5000</a>
+			<a href="javascript:void(0)" onclick="upgrades(2)" id="up2" style="display:none;">X5 Power to Manual Attack $10000</a>
+			<a href="javascript:void(0)" onclick="upgrades(3)" id="up3" style="display:none;">X2 Power to Hero 2 $10000</a>
+			<a href="javascript:void(0)" onclick="upgrades(4)" id="up4" style="display:none;">X5 Power to Manual Attack $50000</a>
+			<a href="javascript:void(0)" onclick="upgrades(5)" id="up5" style="display:none;">X2 Power to Hero 3 $50000</a>
+			<a href="javascript:void(0)" onclick="upgrades(6)" id="up6" style="display:none;">X5 Power to Manual Attack $100000</a>
+			<a href="javascript:void(0)" onclick="upgrades(7)" id="up7" style="display:none;">X2 Power to Hero 4 $100000</a>
+			<a href="javascript:void(0)" onclick="upgrades(8)" id="up8" style="display:none;">X5 Power to Manual Attack $500000</a>
+			<a href="javascript:void(0)" onclick="upgrades(9)" id="up9" style="display:none;">X2 Power to Hero 5 $500000</a>
+		</div>
+	</div>
+	
+	<div id="story" class="storyBox">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeStory()">&times;</a>
+		<div class="storyBox-content">
+			<a href="javascript:void(0)" id="printStory"></a> 
+		</div>
+	</div>
+	
+	<!-- Javascript -->
+	<!-- Javascript functions related to saving data -->
+	<script type="text/javascript" src="saves.js"></script>
+	<!-- Javascript functions related to upgrades -->
+	<script type="text/javascript" src="upgrades.js"></script>
+	<!-- Javascript functions related to heroes -->
+	<script type="text/javascript" src="heroes.js"></script>
+	<!-- General JS -->
+	<script type="text/javascript" src="main.js"></script>
+
 </body>
 </html>
 

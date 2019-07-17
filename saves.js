@@ -18,6 +18,7 @@ function updatesaves(){
 	localStorage.setItem("monstermax", monstermax);
 	localStorage.setItem("selfupgrades", selfupgrades);
 	localStorage.setItem("heroupgrades", heroupgrades);
+	localStorage.setItem("selfimage", selfimage);
 	for (var saved = 0; saved < 12; saved++){
 		localStorage.setItem('heroes_1' + saved, allheroes[saved].quantity);
 		localStorage.setItem('heroes_2' + saved, allheroes[saved].profit);
@@ -42,6 +43,8 @@ function getsaves() {
 		selfupgrades = parseInt(localStorage.getItem("selfupgrades"));
 	if( localStorage.heroupgrades )
 		heroupgrades = parseInt(localStorage.getItem("heroupgrades"));
+	if( localStorage.selfimage )
+		selfimage = localStorage.getItem("selfimage");
 	if (localStorage.heroes_10 ){
 		for (var pulled = 0; pulled < 12; pulled++) {
 			allheroes[pulled].quantity = parseInt(localStorage.getItem('heroes_1' + pulled));

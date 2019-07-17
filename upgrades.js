@@ -15,7 +15,7 @@
 // All available upgrades - when they can be purchased and what effects they have
 function upgrades(item) {
 	if (item == 0 && money >= 1000){			
-		damage = damage * 5;
+		selfDamage = selfDamage * 5;
 		money = money - 1000;
 		document.getElementById("up0").style = "display: none";		
 		document.getElementById("up2").style = "display: block";
@@ -30,7 +30,7 @@ function upgrades(item) {
 		heroupgrades++;
 	}
 	if (item == 2 && money >= 10000){
-		damage = damage * 5;
+		selfDamage = selfDamage * 5;
 		money = money - 5000;
 		document.getElementById("up2").style = "display: none";		
 		document.getElementById("up4").style = "display: block";
@@ -45,7 +45,7 @@ function upgrades(item) {
 		heroupgrades++;
 	}
 	if (item == 4 && money >= 50000){
-		damage = damage * 5;
+		selfDamage = selfDamage * 5;
 		money = money - 10000;
 		document.getElementById("up4").style = "display: none";		
 		document.getElementById("up6").style = "display: block";
@@ -60,7 +60,7 @@ function upgrades(item) {
 		heroupgrades++;
 	}
 	if (item == 6 && money >= 100000){
-		damage = damage * 5;
+		selfDamage = selfDamage * 5;
 		money = money - 20000;
 		document.getElementById("up6").style = "display: none";
 		document.getElementById("up8").style = "display: block";
@@ -75,7 +75,7 @@ function upgrades(item) {
 		heroupgrades++;
 	}
 	if (item == 8 && money >= 500000){
-		damage = damage * 5;
+		selfDamage = selfDamage * 5;
 		money = money - 40000;
 		document.getElementById("up8").style = "display: none";
 		selfupgrades++;
@@ -94,26 +94,44 @@ function upgrades(item) {
 // Determines which upgrades should be shown depending on which have
 // been previously purchased (used only at initial game start/refresh)
 function displayUpgrades(){
-	if (selfupgrades == 0)
-		document.getElementById("up0").style = "display: block";
-	if (selfupgrades == 1)
-		document.getElementById("up2").style = "display: block";
-	if (selfupgrades == 2)
-		document.getElementById("up4").style = "display: block";
-	if (selfupgrades == 3)
-		document.getElementById("up6").style = "display: block";
-	if (selfupgrades == 4)
-		document.getElementById("up8").style = "display: block";
-	if (heroupgrades == 0)
-		document.getElementById("up1").style = "display: block";
-	if (heroupgrades == 1)
-		document.getElementById("up3").style = "display: block";
-	if (heroupgrades == 2)
-		document.getElementById("up5").style = "display: block";
-	if (heroupgrades == 3)
-		document.getElementById("up7").style = "display: block";
-	if (heroupgrades == 4)
-		document.getElementById("up9").style = "display: block";
+	switch(selfupgrades){
+		case 0:
+			document.getElementById("up0").style = "display: block";
+			break;
+		case 1:
+			document.getElementById("up2").style = "display: block";
+			break;
+		case 2:
+			document.getElementById("up4").style = "display: block";
+			break;
+		case 3:
+			document.getElementById("up6").style = "display: block";
+			break;
+		case 4:
+			document.getElementById("up8").style = "display: block";
+			break;
+		default:
+			//do nothing	
+	}
+	switch(heroupgrades){
+		case 0:
+			document.getElementById("up1").style = "display: block";
+			break;
+		case 1:
+			document.getElementById("up3").style = "display: block";
+			break;
+		case 2:
+			document.getElementById("up5").style = "display: block";
+			break;
+		case 3:
+			document.getElementById("up7").style = "display: block";
+			break;
+		case 4:
+			document.getElementById("up9").style = "display: block";
+			break;
+		default:
+			//do nothing	
+	}
 }
 
 
