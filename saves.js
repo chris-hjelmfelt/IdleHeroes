@@ -11,45 +11,45 @@
 
 // Update saved data
 function updatesaves(){
-	localStorage.setItem("money2", money);
-	localStorage.setItem("reputation2", reputation);
-	localStorage.setItem("damage2", damage);
-	localStorage.setItem("powermax2", powermax);
-	localStorage.setItem("monstermax", monstermax);
-	localStorage.setItem("selfupgrades", selfupgrades);
-	localStorage.setItem("heroupgrades", heroupgrades);
-	localStorage.setItem("selfimage", selfimage);
+	localStorage.setItem("money3", money);
+	localStorage.setItem("reputation3", reputation);
+	localStorage.setItem("playerDam3", playerDam);
+	localStorage.setItem("powermax3", powermax);
+	localStorage.setItem("monstermax3", monstermax);
+	localStorage.setItem("selfupgrades3", selfupgrades);
+	localStorage.setItem("heroupgrades3", heroupgrades);
+	localStorage.setItem("selfimage3", selfimage);
 	for (var saved = 0; saved < 12; saved++){
-		localStorage.setItem('heroes_1' + saved, allheroes[saved].quantity);
-		localStorage.setItem('heroes_2' + saved, allheroes[saved].profit);
-		localStorage.setItem('heroes_3' + saved, allheroes[saved].cost);
+		localStorage.setItem('heroNum3' + saved.toString(), heroNum[saved]);    
+    localStorage.setItem('heroCost3' + saved.toString(), heroCost[saved]);
+    localStorage.setItem('heroDam3' + saved.toString(), heroDam[saved]);
 	}
 }
 
 
 // Get saved data
 function getsaves() {
-	if( localStorage.money2 )	
-		money = parseInt(localStorage.getItem("money2"));
-	if( localStorage.reputation2 )
-		reputation = parseInt(localStorage.getItem("reputation2"));
-	if( localStorage.damage2 )
-		damage = parseInt(localStorage.getItem("damage2"));
-	if( localStorage.powermax2 )
-		powermax = parseInt(localStorage.getItem("powermax2"));
-	if( localStorage.monstermax )
-		monstermax = parseInt(localStorage.getItem("monstermax"));
-	if( localStorage.selfupgrades )
-		selfupgrades = parseInt(localStorage.getItem("selfupgrades"));
-	if( localStorage.heroupgrades )
-		heroupgrades = parseInt(localStorage.getItem("heroupgrades"));
-	if( localStorage.selfimage )
-		selfimage = localStorage.getItem("selfimage");
-	if (localStorage.heroes_10 ){
+	if( localStorage.money3 )	
+		money = parseInt(localStorage.getItem("money3"));
+	if( localStorage.reputation3 )
+		reputation = parseInt(localStorage.getItem("reputation3"));
+	if( localStorage.playerDam3 )
+		playerDam = parseInt(localStorage.getItem("playerDam3"));
+	if( localStorage.powermax3 )
+		powermax = parseInt(localStorage.getItem("powermax3"));
+	if( localStorage.monstermax3 )
+		monstermax = parseInt(localStorage.getItem("monstermax3"));
+	if( localStorage.selfupgrades3 )
+		selfupgrades = parseInt(localStorage.getItem("selfupgrades3"));
+	if( localStorage.heroupgrades3 )
+		heroupgrades = parseInt(localStorage.getItem("heroupgrades3"));
+	if( localStorage.selfimage3 )
+		selfimage = localStorage.getItem("selfimage3");
+	if ( localStorage.heroNum30 ){
 		for (var pulled = 0; pulled < 12; pulled++) {
-			allheroes[pulled].quantity = parseInt(localStorage.getItem('heroes_1' + pulled));
-			allheroes[pulled].profit = parseInt(localStorage.getItem('heroes_2' + pulled));
-			allheroes[pulled].cost = parseInt(localStorage.getItem('heroes_3' + pulled));
+			heroNum[pulled] = parseInt(localStorage.getItem('heroNum3' + pulled.toString()));  
+      heroCost[pulled] = parseInt(localStorage.getItem('heroCost3' + pulled.toString()));
+      heroDam[pulled] = parseInt(localStorage.getItem('heroDam3' + pulled.toString())); 
 		}
 	}
 }

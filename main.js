@@ -20,12 +20,12 @@ function onLoadCompleted(){
 var timeT = setInterval(timeTick, 500);
 var tickCount = 0;
 var power = 0;
-var money = 0;
-var reputation = 0;
-var monsterhp = 500;
-var monstermax = 500;
-var monsterhealth = 500;
-var selfDamage = 1;
+var money = 0n;
+var reputation = 0n;  // the added n should make it of type BigInt which people might hit if they play a long time
+var monsterhp = 50n;
+var monstermax = 200n;
+var monsterhealth = 50n;
+var playerDam = 1;
 var deadmonsterflag = false;
 var messagetime = 0;
 var manualmessagetime = 0;
@@ -40,6 +40,7 @@ var selfimage = "f";
 var firstshots = 5;
 var numOfHeroes = 12;
 var combinedDamage = 0;
+var newUpgrade = 0;
 
 // Array for monster images
 var imgArray = new Array();
@@ -74,11 +75,12 @@ function printall() {
 	document.getElementById("rep").innerHTML = reputation;
 	for (let i = 0; i < numOfHeroes; i++){
 		let j = i + 1;
-		document.getElementById("cost" + j).innerHTML = "cost = $"  + allheroes[i].cost;
-		document.getElementById("pow" + j).innerHTML = "power = "  + (allheroes[i].quantity * allheroes[i].profit);
-		document.getElementById("h" + j).innerHTML = allheroes[i].quantity;
+		document.getElementById("cost" + j).innerHTML = "cost = $"  + heroCost[i];
+		document.getElementById("pow" + j).innerHTML = "power = "  + (heroNum[i] * heroDam[i]);
+		document.getElementById("h" + j).innerHTML = heroNum[i];
 	}
 	document.getElementById("fightmess").innerHTML = "";
+  displayHeroUpgrades();
 	//document.getElementById("testing").innerHTML = testmess;
 }
 
@@ -110,7 +112,7 @@ function timeTick() {
 function calculatePower(){
 	combinedDamage = 0;
 	for (let i = 0; i < numOfHeroes; i++){
-		combinedDamage += allheroes[i].quantity * allheroes[i].profit;
+		combinedDamage += heroNum[i] * heroDam[i];
 	}
 	power = combinedDamage;	
 }
@@ -121,38 +123,40 @@ function manclick() {
 		document.getElementById("click").src = "images/clickblank.jpg";
 		manualmessagetime = 3;	
 		
-		var rand1 = Math.ceil(Math.random() * 10);
-		var rand2 = Math.ceil(Math.random() * 50);
-		if (rand1 > 5){
-			rand1 = 0;
+    var superStash = Math.ceil(Math.random() * 20);
+    var reward = Math.ceil(Math.random() * 2);
+		var cashFound = 0;
+
+		if (reward == 2){  
+			cashFound = Math.ceil(Math.random() * 10);
 		}
-		if (rand2 == 50){
-			rand1 = rand1 * 50;
+		if (superStash == 20){
+			cashFound = cashFound * 20;
 		}
 		
-		if (firstshots > 0){
+		if (firstshots > 0){  // make sure they hit their first few times
 			misschance = 0;
 			firstshots--;
-			rand1 = Math.ceil(Math.random() * 5);
 		} else { misschance = 3 - selfupgrades; }
 		
-		money = money + rand1;
+    totalCashFound = cashFound * (selfupgrades + 1);  // you get more as you upgrade
+		money = money + totalCashFound;
 		
-		var rand3 = Math.ceil(Math.random() * (3 + misschance));
-		if (rand3 > 3){
-			rand3 = 0;
+		var hit = Math.ceil(Math.random() * (3 + misschance));
+		if (hit > 3){ // missed the hit
+			hit = 0;
 		}
-		monsterhealth = monsterhealth - (rand3 * selfDamage);
+		monsterhealth = monsterhealth - (hit * playerDam);
 		
 		if (monsterhealth <= 0){
 			killmonster(1);
 		}
 				
-		if (rand3 > 0) {
-			if (rand1 > 0) {
-				document.getElementById("action").innerHTML = "You did <span style='color:red'>" + (rand3 * selfDamage) + "</span> damage to the monster and you got <span style='color:red'>$" + rand1 + "</span>";
+		if (hit > 0) {
+			if (cashFound > 0) {
+				document.getElementById("action").innerHTML = "You did <span style='color:red'>" + (hit * playerDam) + "</span> damage to the monster and you got <span style='color:red'>$" + totalCashFound + "</span>";
 			} else {
-				document.getElementById("action").innerHTML = "You did <span style='color:red'>" + (rand3 * selfDamage) + "</span> damage to the monster.";
+				document.getElementById("action").innerHTML = "You did <span style='color:red'>" + (hit * playerDam) + "</span> damage to the monster.";
 			}
 		} else {
 			document.getElementById("action").innerHTML = "You Missed";
@@ -201,10 +205,14 @@ function killmonster(which) {
 	deadmonsterflag = true;
 	monsterhealth = 0;
 	document.getElementById("monster").innerHTML = monsterhealth;
-	document.getElementById("monsterimg").src = "images/Victorious.jpg";	
-	if (killtick < 10) {  // powerbar size should increase over time
+	document.getElementById("monsterimg").src = "images/Victorious.jpg";
+
+  // monsters should get stronger over time - but not too fast after an upgrade
+	if (killtick < 10 && newUpgrade <= 0) {  
 		monstermax = monstermax + Math.ceil(monsterhp/10);
-	}
+	} else if (newUpgrade > 0) {
+    newUpgrade--;
+  }
 	killtick = Math.ceil(Math.random() * 4);	
 	if (which == 2){  // If it was heroes that did the kill shot
 		power = 0;
@@ -232,9 +240,21 @@ function getmonster() {
 function genderSelect(gender) {
 	if (gender == "m"){
 		document.getElementById("charImage").src = 'images/MainChar-Male1.png';
+    document.getElementById('female').style.border = '1px solid grey';
+    document.getElementById('other').style.border = '1px solid grey';
+    document.getElementById('male').style.border = '1px solid blue';
 		selfimage = 'm';
+  }else if (gender == "o"){
+		document.getElementById("charImage").src = 'images/MainChar-Other1.png';
+    document.getElementById('male').style.border = '1px solid grey';
+    document.getElementById('female').style.border = '1px solid grey';
+    document.getElementById('other').style.border = '1px solid blue';
+		selfimage = 'o';
 	}else{
 		document.getElementById("charImage").src = 'images/MainChar-Female1.png';
+    document.getElementById('male').style.border = '1px solid grey';
+    document.getElementById('other').style.border = '1px solid grey';
+    document.getElementById('female').style.border = '1px solid blue';
 		selfimage = 'f';
 	}
 }

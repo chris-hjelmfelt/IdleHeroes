@@ -5,20 +5,9 @@
 // ---------------------------------------------------------------------------*/
 
 // Hero Arrays
-var hero1 = {quantity:0, profit:1, cost:10};
-var hero2 = {quantity:0, profit:5, cost:100};
-var hero3 = {quantity:0, profit:25, cost:1000};
-var hero4 = {quantity:0, profit:125, cost:10000};
-var hero5 = {quantity:0, profit:500, cost:100000};
-var hero6 = {quantity:0, profit:2500, cost:1000000};
-var hero7 = {quantity:0, profit:12500, cost:10000000};
-var hero8 = {quantity:0, profit:50000, cost:100000000};
-var hero9 = {quantity:0, profit:250000, cost:1000000000};
-var hero10 = {quantity:0, profit:1250000, cost:10000000000};
-var hero11 = {quantity:0, profit:5000000, cost:100000000000};
-var hero12 = {quantity:0, profit:25000000, cost:1000000000000};
-var allheroes = [hero1, hero2, hero3, hero4, hero5, hero6, hero7, hero8, hero9, hero10, hero11, hero12];
-
+var heroNum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var heroDam = [1,5,25,125,500,2500,12500,50000,250000,1250000,5000000,25000000];
+var heroCost = [10,100,1000,10000,100000,1000000,10000000,100000000,1000000000,10000000000,100000000000,1000000000000]
 
 // Display certain heroes depending on the players reputation level
 function setupHeroes() {
@@ -79,16 +68,17 @@ function displayHeroElements(i){
 	document.getElementById("um" + i).style = "visibility:visible";			
 	document.getElementById("cost" + i).style = "visibility:visible";
 	document.getElementById("pow" + i).style = "visibility:visible";
+  document.getElementById("hbut" + i).style = "display:inline";
 	document.getElementById("story" + i).style = "display:inline";
 	document.getElementById("rep" + i).style = "visibility:hidden";
 }
 
 // If the user has enough money it buys a power boost for the selected hero
 function heroclick(i) {
-	if (money >= allheroes[i].cost){
-		money = money - allheroes[i].cost;
-		allheroes[i].cost = allheroes[i].cost + Math.ceil(allheroes[i].cost/10);
-		allheroes[i].quantity = allheroes[i].quantity + 1;
+	if (money >= heroCost[i]){
+		money = money - heroCost[i];
+		heroCost[i] = heroCost[i] + Math.ceil(heroCost[i]/10);
+		heroNum[i] = heroNum[i] + 1;
 		printall();		
 	}
 }
