@@ -84,7 +84,7 @@ function upgrades(item) {
     displayUpgrades();
     displayHeroUpgrades()
     printall();
-    newUpgrade = 5;
+    newUpgrade = 5;   // counter
     upgraded = false;
   }	
 }
