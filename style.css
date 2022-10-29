@@ -8,32 +8,189 @@ body {
 h1 {
 	color: #009999;
 }
-
 h2 {
 	color: #009999;
 	display: inline;
 }
-
 h3 {
 	color: #009999;
 	display: inline;
 }
-
 h4 {
 	color: #009999;
 	display: inline;
 }
 
-.mainDiv {
-	width: 940px;
-	margin-left: 10%;
+.main {
+	width: 1200px;
 	border: 2px solid black;
 }
 
+
+/* Heroes */
+.row {
+  display: flex;
+  justify-content: space-around;
+}
+.herobox {
+  position: relative;
+  width: 280px;
+  height: 140px;
+  border: 2px solid black;
+  margin: 0 5px 5px 0;
+}
+.heroname {
+  display: inline-block;
+  padding: 3px 0 0 6px;
+  font-size: 1.5em;
+	color: #009999;
+}
+.heroimage {
+  position: absolute;
+  left: -1px;
+  bottom: -2px;
+  width: 90px;
+  height: 108px;
+	border: 2px solid black;
+  display: none;
+}
+.herostats {
+  position: absolute;
+  width: 170px;
+  right: 6px;
+  top: 30px;
+}
+.storyButton {
+	display: none;
+  margin: 0 0 20px 0;
+}
+.boosts {
+	font-size: 1.2em;
+	visibility: hidden;
+}
+.numhero {
+	color: #009999;
+	font-size: 1.3em;
+	visibility: hidden;
+}
+.upmultiple{
+	color: #009999;
+	font-size: 1em;
+	visibility:hidden;
+}
+.cost {
+	color: black;
+	font-size: 1em;
+	visibility:hidden;
+}
+.power {
+	color: black;
+	font-size: 1em;
+	visibility: hidden;
+}
+.heroButton {
+  display: none;
+  margin: 5px 0 0 0;
+}
+.repneeded {
+  margin: 5px 0 0 0;
+}
+
+
+/* Stats & Instructions*/
+#stats {
+	padding-top: 5px;
+	padding-bottom: 10px; 
+  width: fit-content;
+}
+#money {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+#rep {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+#instructions {
+  width:100%;
+  margin-top: 5px;
+  padding: 5px;
+  font-size: 1.2em;
+}
+
+
+
+/* Monster */
+#monsterbox {
+  width: 100%;
+}
 #monsterimg {
 	width: 100%;
 	border: 2px solid black;	
 }
+#hptitle {
+  display: block;
+  float: left;
+	color: #009999;  
+	font-size: 1.2em;
+}
+.hpnum {
+  display: block;
+  float: right;
+	color: #009999;
+	font-size: 1.2em;
+}
+#myProgress {
+  width: 100%;
+  background-color: white;
+  border: 2px solid black;
+}
+#monsterbar {
+  width: 1%;
+  height: 20px;
+  background-color: red;
+}
+
+/* Lower-Right */
+#lower-right {
+  width: 100%;
+  padding: 5px;
+  overflow: hidden;
+}
+
+/* Player */
+#player {
+  width: 80px;
+  float: left;
+}
+#charImage {
+  width: 80px;
+  height: 138px;
+  border: 2px solid black;
+}
+
+/* Attack & Upgrade button */
+#misc {
+  position: relative;
+  width: 190px;
+  height: 60px;
+  float: left;
+  margin-left: 20px;
+}
+.text-block {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+} 
+.actionmess {
+	color: #009999;
+	font-size: 1.1em;
+}
+
+
+
+
+
 
 #upgradebox {
 	display: none;
@@ -44,74 +201,17 @@ h4 {
 	display: none;
 }
 
-#assets {
-	padding-top: 5px;
-	padding-bottom: 10px;
+#powerbar {
+  width: 1%;
+  height: 30px;
+  background-color: red;
 }
-
-#money {
-  font-weight: bold;
-}
-
-#rep {
-  font-weight: bold;
+#click {
+width: 80%;
 }
 
 .avatar {
 	border: 2px solid black;
-}
-
-.monsterstr {
-	color: #009999;
-	font-size: 14px;
-}
-
-.heroes {
-	color: #009999;
-	font-size: 14px;
-}
-
-.boosts {
-	font-size: 14px;
-	visibility: hidden;
-}
-
-.numhero {
-	color: #009999;
-	font-size: 14px;
-	visibility: hidden;
-}
-
-.upmultiple{
-	color: #009999;
-	font-size: 12px;
-	visibility:hidden;
-}
-
-.cost {
-	color: black;
-	font-size: 10px;
-	visibility:hidden;
-}
-
-.power {
-	color: black;
-	font-size: 10px;
-	visibility: hidden;
-}
-
-.storyButton {
-	display: none;
-}
-
-.heroButton {
-  display: none;
-}
-
-.rep {  
-  width: 100%;
-	color: grey;
-	font-size: 10px;  
 }
 
 .fightmess {
@@ -119,16 +219,22 @@ h4 {
 	font-size: 12px;
 }
 
-.actionmess {
-	color: #009999;
-	font-size: 12px;
+
+
+ /* Container for Click Here and Attack Message */
+ .container {
+  position: relative;
 }
 
+
+
+
+/* Buttons */
 .bigbuttons {
 	background-color: #0099FF;
 	color: black;
 	float: center;
-	width: 200px;
+	width: 160px;
 	border: 2px solid black;
 	outline: 2px;
 	padding: 10px;
@@ -136,7 +242,6 @@ h4 {
 	font-size: 28px;	
 	margin: 3px 3px 3px 3px;
 }
-
 .medbuttons {
 	background-color: #0099FF;
 	color: black;
@@ -149,7 +254,6 @@ h4 {
 	font-size: 20px;	
 	margin: 3px 3px 3px 3px;
 }
-
 .smbuttons {
 	background-color: #FFFFFF;
 	color: black;
@@ -162,77 +266,16 @@ h4 {
 	font-size: 12px;	
 	margin: 3px 3px 3px 3px;
 }
-
-.heroimage {
-	float: center;
-	border: 2px solid black;
-  display: none;
-}
-
-.heroimage img {
-  width: 95%;
-}
-
-.heros {
-	color: #009900;
-	font-size: 14px;
-}
-
-/* .herobuttons {
-	background-color: #0099FF;
-	color: black;
-	float: center;
-	width: 35px;
-	border: 2px solid black;
-	outline: 2px;
-	padding: 5px;
-	font-size: 20px;	
-} */
-
-
-
 button.hover{
 	background-color: #0099FF;
 	color: white;	
 }
-
 button.active{
 	background-color: #009999;
 	color: black;
 }
 
 
-
-#myProgress {
-		width: 100%;
-		background-color: white;
-		border: 2px solid black;
-}
-
-#monsterbar {
-    width: 1%;
-    height: 30px;
-    background-color: red;
-}
-
-#powerbar {
-    width: 1%;
-    height: 30px;
-    background-color: red;
-}
-
-#instructions {
-    width:100%;
-    margin-top: 5px;
-    padding: 5px;
-    border: 1px solid black;
-		color: #009999;
-		font-size: 12px;
-}
-
-#click {
-	width: 80%;
-}
 
 /* Overlay for Upgrades */
 .overlay {
@@ -288,6 +331,7 @@ button.active{
 /* End Overlay for Upgrades*/
 
 
+
 /* Overlay for Hero Story */
 .storyBox {
     height: 0%;  	/* height when open is found in the openStory() function */	
@@ -341,17 +385,3 @@ button.active{
 }
 /* End Overlay for Hero Story*/
 
-
- /* Container for Click Here and Attack Message */
-.container {
-    position: relative;
-}
-
-/* Action Message text */
-.text-block {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    padding-left: 20px;
-    padding-right: 20px;
-} 

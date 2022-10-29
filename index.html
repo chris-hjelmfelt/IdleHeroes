@@ -9,180 +9,194 @@
 </head>
 
 <body>
-	<div class="mainDiv" align="center">
+	<div class="main">
 		<table width="100%" id="mainTable"><tr>
-			<td valign="top" align="center" width="35%" id="leftSide">
-				<table><tr><td width="100%" colspan="2">
+			<td valign="top" width="35%" id="leftSide">
+
+				<div id="monsterbox">
 					<img src="monsters/monster1.jpg" width="300px" height="450px" id="monsterimg"><br>
-					</td></tr><tr><td width="50%">
-					<h4>Monster Strength</h4> 
-					</td><td align="right">
-					<span class="monsterstr" id="monster">0</span>
-					</td></tr><tr><td colspan="2">
-					<div id="myProgress"><div id="monsterbar"></div></div> 					
-				</td></tr></table>
+          <div id="myProgress"><div id="monsterbar"></div></div> 	
+					<span id="hptitle">Monster HP</span>
+					<span class="hpnum" id="monster">0</span>
+        </div>
 				
-				<span id="fightmess"></span><br>
+        <div id="lower-right">
+          <span id="fightmess"></span><br>
 				
-				<table width="100%"><tr>
-					<td valign="top" align="left" width="35%">					
-						<img src="images/MainChar-Female1.png" width="85%" border="2" id="charImage"><br>
-						<button onclick="genderSelect('f')" type="button" id="female">F</button>&nbsp;
-            <button onclick="genderSelect('o')" type="button" id="other">O</button>&nbsp;
-            <button onclick="genderSelect('m')" type="button" id="male">M</button>
-					</td><td  valign="top">
-						<table width="100%"><tr><td>
-							<div class="container">
-								<img src="images/click.jpg" id="click">
-								<div class="text-block"><span class="actionmess" id="action"></span></div></div> 
-						</td></tr><tr><td>
-							<button onclick="manclick()" type="button" class="bigbuttons" id="manual">Attack</button><br>
-							<button onclick="openUpgrades()" type="button" class="smbuttons" id="manual">Upgrades</button>
-						</td></tr></table>
-					</td></tr>
-				</table>				
+          <div id="player">					
+              <img src="images/MainChar-Female1.png" id="charImage"><br>
+              <button onclick="genderSelect('f')" type="button" id="female">F</button>&nbsp;
+              <button onclick="genderSelect('o')" type="button" id="other">O</button>&nbsp;
+              <button onclick="genderSelect('m')" type="button" id="male">M</button>
+          </div>
+
+          <div id="misc">
+            <img src="images/click.jpg" id="click"><br>
+            <div class="text-block"><span class="actionmess" id="action"></span></div><br>
+            <button onclick="manclick()" type="button" class="bigbuttons" id="manual">Attack</button><br>
+            <button onclick="openUpgrades()" type="button" class="smbuttons" id="manual">Upgrades</button>
+          </div>		
+        </div>					
 			
 			</td><td width="2%" id="centerSpace">
 			
-			</td><td valign="top" align="center" id="rightSide">		
-				<table width="100%" id="assets"><tr><td valign="top" width="25%">
-					<h2>$</h2> <span id="money">0</span>
-					</td><td>
-					<h3>Reputation</h3> <span id="rep">0</span>
-				</td></tr></table>			
-			
-				<table width="100%" border="2" cellpadding="5">
-          <tr><td width="16%">
-            <div class="heroimage" id="1"><img  src="images/hero1.png"></td><div>
-          </td><td width="34%">
-            <span class="heroes" id="hero1">John the Farmer's Son</span> <br>
-            <span class="boosts" id="b1" >Power Boosts:</span> <span class="numhero" id="h1">0</span> &nbsp; <span class="upmultiple" id="um1"></span><br>
-            <span class="cost" id="cost1"></span> &nbsp;<span class="power" id="pow1"></span><br>
-            <button onclick="heroclick(0)" type="button" class="heroButton" id="hbut1">Buy Boost</button>
-            <button onclick="openStory(1)" type="button" class="storyButton" id="story1">Story</button>
-            <div class="rep" id="rep1"></div>
-          </td><td width="16%">
+			</td><td valign="top" id="rightSide">						
+        <div class="row">
+          <div class="herobox">
+            <span class="heroname" id="hero1">John the Farmer's Son</span><br>
+            <img  class="heroimage" id="1" src="images/hero1.png">
+            <div class="herostats">
+              <button onclick="openStory(1)" type="button" class="storyButton" id="story1">Story</button><br>
+              <span class="boosts" id="b1" >Power Boosts:</span> <span class="numhero" id="h1">0</span> &nbsp; <span class="upmultiple" id="um1"></span><br>
+              <span class="cost" id="cost1"></span> &nbsp;<span class="power" id="pow1"></span><br>
+              <button onclick="heroclick(0)" type="button" class="heroButton" id="hbut1">Buy Boost</button>
+              <div class="repneeded" id="rep1"></div>
+            </div>
+          </div>
+          <div class="herobox">
+            <span class="heroname" id="hero2">Hero 2</span> <br>
+            <img class="heroimage" id="2" src="images/hero2.png">                    
+            <div class="herostats">              
+              <button onclick="openStory(2)" type="button" class="storyButton" id="story2">Story</button><br>
+              <span class="boosts" id="b2">Power Boosts:</span> <span class="numhero" id="h2">0</span> &nbsp; <span class="upmultiple" id="um2"></span><br>
+              <span class="cost" id="cost2"></span> &nbsp;<span class="power" id="pow2"></span><br>
+              <button onclick="heroclick(1)" type="button" class="heroButton" id="hbut2">Buy Boost</button>
+              <div class="rep" id="rep2">Reputation Needed: 200</div>
+            </div>            
+          </div>
+          <div class="herobox">
+            <span class="heroname" id="hero3">Hero 3</span> <br>
+            <img class="heroimage" id="3" src="images/hero3.png">            
+            <div class="herostats">
+              <button onclick="openStory(3)" type="button" class="storyButton" id="story3">Story</button><br>
+              <span class="boosts" id="b3" >Power Boosts:</span> <span class="numhero" id="h3">0</span> &nbsp; <span class="upmultiple" id="um3"></span><br>
+              <span class="cost" id="cost3"></span> &nbsp;<span class="power" id="pow3"></span><br>
+              <button onclick="heroclick(2)" type="button" class="heroButton" id="hbut3">Buy Boost</button>
+              <div class="rep" id="rep3">Reputation Needed: 1K</div>
+            </div>            
+          </div>          
+        </div>
 
-            <div class="heroimage" id="7"><img src="images/hero7.png"></div> 
-          </td><td width="34%">
-            <span class="heroes" id="hero7">Hero 7</span> <br>
-            <span class="boosts" id="b7">Power Boosts:</span> <span class="numhero" id="h7">0</span> &nbsp; <span class="upmultiple" id="um7"></span><br>
-            <span class="cost" id="cost7"></span> &nbsp;<span class="power" id="pow7"></span><br>
-            <button onclick="heroclick(6)" type="button" class="heroButton" id="hbut7">Buy Boost</button>
-            <button onclick="openStory(7)" type="button" class="storyButton" id="story7">Story</button>
-            <div class="rep" id="rep7">Reputation Needed: 10M</div>
-          </td></tr><tr><td>
+        <div class="row">
+          <div class="herobox">
+            <span class="heroname" id="hero4">Hero 4</span><br>
+            <img  class="heroimage" id="4" src="images/hero4.png">
+            <div class="herostats">
+              <button onclick="openStory(4)" type="button" class="storyButton" id="story4">Story</button><br>
+              <span class="boosts" id="b4" >Power Boosts:</span> <span class="numhero" id="h4">0</span> &nbsp; <span class="upmultiple" id="um4"></span><br>
+              <span class="cost" id="cost4"></span> &nbsp;<span class="power" id="pow4"></span><br>
+              <button onclick="heroclick(3)" type="button" class="heroButton" id="hbut4">Buy Boost</button>
+              <div class="repneeded" id="rep4">Reputation Needed: 10K</div>
+            </div>
+          </div>
+          <div class="herobox">
+            <span class="heroname" id="hero5">Hero 5</span> <br>
+            <img class="heroimage" id="5" src="images/hero5.png">                    
+            <div class="herostats">              
+              <button onclick="openStory(5)" type="button" class="storyButton" id="story5">Story</button><br>
+              <span class="boosts" id="b5">Power Boosts:</span> <span class="numhero" id="h5">0</span> &nbsp; <span class="upmultiple" id="um5"></span><br>
+              <span class="cost" id="cost5"></span> &nbsp;<span class="power" id="pow5"></span><br>
+              <button onclick="heroclick(4)" type="button" class="heroButton" id="hbut5">Buy Boost</button>
+              <div class="rep" id="rep5">Reputation Needed: 100K</div>
+            </div>            
+          </div>
+          <div class="herobox">
+            <span class="heroname" id="hero6">Hero 6</span> <br>
+            <img class="heroimage" id="6" src="images/hero6.png">            
+            <div class="herostats">
+              <button onclick="openStory(6)" type="button" class="storyButton" id="story6">Story</button><br>
+              <span class="boosts" id="b6" >Power Boosts:</span> <span class="numhero" id="h6">0</span> &nbsp; <span class="upmultiple" id="um6"></span><br>
+              <span class="cost" id="cost6"></span> &nbsp;<span class="power" id="pow6"></span><br>
+              <button onclick="heroclick(5)" type="button" class="heroButton" id="hbut6">Buy Boost</button>
+              <div class="rep" id="rep6">Reputation Needed: 1M</div>
+            </div>            
+          </div>          
+        </div>
 
-            <div class="heroimage" id="2"><img src="images/hero2.png"></div> 
-          </td><td>
-            <span class="heroes" id="hero2">Hero 2</span> <br>
-            <span class="boosts" id="b2">Power Boosts:</span> <span class="numhero" id="h2">0</span> &nbsp; <span class="upmultiple" id="um2"></span><br>
-            <span class="cost" id="cost2"></span> &nbsp;<span class="power" id="pow2"></span><br>
-            <button onclick="heroclick(1)" type="button" class="heroButton" id="hbut2">Buy Boost</button>
-            <button onclick="openStory(2)" type="button" class="storyButton" id="story2">Story</button>
-            <div class="rep" id="rep2">Reputation Needed: 200</div>
-          </td><td>
+        <div class="row">
+          <div class="herobox">
+            <span class="heroname" id="hero7">Hero 7</span><br>
+            <img  class="heroimage" id="7" src="images/hero7.png">
+            <div class="herostats">
+              <button onclick="openStory(7)" type="button" class="storyButton" id="story7">Story</button><br>
+              <span class="boosts" id="b7" >Power Boosts:</span> <span class="numhero" id="h7">0</span> &nbsp; <span class="upmultiple" id="um7"></span><br>
+              <span class="cost" id="cost7"></span> &nbsp;<span class="power" id="pow7"></span><br>
+              <button onclick="heroclick(6)" type="button" class="heroButton" id="hbut7">Buy Boost</button>
+              <div class="repneeded" id="rep7">Reputation Needed: 10M</div>
+            </div>
+          </div>
+          <div class="herobox">
+            <span class="heroname" id="hero8">Hero 8</span> <br>
+            <img class="heroimage" id="8" src="images/hero8.png">                    
+            <div class="herostats">              
+              <button onclick="openStory(8)" type="button" class="storyButton" id="story8">Story</button><br>
+              <span class="boosts" id="b8">Power Boosts:</span> <span class="numhero" id="h8">0</span> &nbsp; <span class="upmultiple" id="um8"></span><br>
+              <span class="cost" id="cost8"></span> &nbsp;<span class="power" id="pow8"></span><br>
+              <button onclick="heroclick(7)" type="button" class="heroButton" id="hbut8">Buy Boost</button>
+              <div class="rep" id="rep8">Reputation Needed: 100M</div>
+            </div>            
+          </div>
+          <div class="herobox">
+            <span class="heroname" id="hero9">Hero 9</span> <br>
+            <img class="heroimage" id="9" src="images/hero9.png">            
+            <div class="herostats">
+              <button onclick="openStory(9)" type="button" class="storyButton" id="story9">Story</button><br>
+              <span class="boosts" id="b9" >Power Boosts:</span> <span class="numhero" id="h9">0</span> &nbsp; <span class="upmultiple" id="um9"></span><br>
+              <span class="cost" id="cost9"></span> &nbsp;<span class="power" id="pow9"></span><br>
+              <button onclick="heroclick(8)" type="button" class="heroButton" id="hbut9">Buy Boost</button>
+              <div class="rep" id="rep9">Reputation Needed: 1T</div>
+            </div>            
+          </div>          
+        </div>
 
-            <div class="heroimage" id="8"><img src="images/hero8.png"></div> 
-          </td><td>
-            <span class="heroes" id="hero8">Hero 8</span> <br>
-            <span class="boosts" id="b8">Power Boosts:</span> <span class="numhero" id="h8">0</span> &nbsp; <span class="upmultiple" id="um8"></span><br>
-            <span class="cost" id="cost8"></span> &nbsp;<span class="power" id="pow8"></span><br>
-            <button onclick="heroclick(8)" type="button" class="heroButton" id="hbut8">Buy Boost</button>
-            <button onclick="openStory(8)" type="button" class="storyButton" id="story8">Story</button>
-            <div class="rep" id="rep8">Reputation Needed: 100M</div>
-          </td></tr><tr><td>
+        <div class="row">
+          <div class="herobox">
+            <span class="heroname" id="hero10">Hero 10</span><br>
+            <img  class="heroimage" id="10" src="images/hero10.png">
+            <div class="herostats">
+              <button onclick="openStory(10)" type="button" class="storyButton" id="story10">Story</button><br>
+              <span class="boosts" id="b10" >Power Boosts:</span> <span class="numhero" id="h10">0</span> &nbsp; <span class="upmultiple" id="um10"></span><br>
+              <span class="cost" id="cost10"></span> &nbsp;<span class="power" id="pow10"></span><br>
+              <button onclick="heroclick(9)" type="button" class="heroButton" id="hbut10">Buy Boost</button>
+              <div class="repneeded" id="rep10">Reputation Needed: 10T</div>
+            </div>
+          </div>
+          <div class="herobox">
+            <span class="heroname" id="hero11">Hero 11</span> <br>
+            <img class="heroimage" id="11" src="images/hero11.png">                    
+            <div class="herostats">              
+              <button onclick="openStory(11)" type="button" class="storyButton" id="story11">Story</button><br>
+              <span class="boosts" id="b11">Power Boosts:</span> <span class="numhero" id="h11">0</span> &nbsp; <span class="upmultiple" id="um11"></span><br>
+              <span class="cost" id="cost11"></span> &nbsp;<span class="power" id="pow11"></span><br>
+              <button onclick="heroclick(10)" type="button" class="heroButton" id="hbut11">Buy Boost</button>
+              <div class="rep" id="rep11">Reputation Needed: 100T</div>
+            </div>            
+          </div>
+          <div class="herobox">
+            <span class="heroname" id="hero12">Hero 12</span> <br>
+            <img class="heroimage" id="12" src="images/hero12.png">            
+            <div class="herostats">
+              <button onclick="openStory(12)" type="button" class="storyButton" id="story12">Story</button><br>
+              <span class="boosts" id="b12" >Power Boosts:</span> <span class="numhero" id="h12">0</span> &nbsp; <span class="upmultiple" id="um12"></span><br>
+              <span class="cost" id="cost12"></span> &nbsp;<span class="power" id="pow12"></span><br>
+              <button onclick="heroclick(11)" type="button" class="heroButton" id="hbut12">Buy Boost</button>
+              <div class="rep" id="rep12">Reputation Needed: 1B</div>
+            </div>            
+          </div>          
+        </div>
 
-            <div class="heroimage" id="3"><img src="images/hero3.png"></div> 
-          </td><td>
-            <span class="heroes"  id="hero3">Hero 3</span> <br>
-            <span class="boosts" id="b3">Power Boosts:</span> <span class="numhero" id="h3">0</span> &nbsp; <span class="upmultiple" id="um3"></span><br>
-            <span class="cost" id="cost3"></span> &nbsp;<span class="power" id="pow3"></span><br>
-            <button onclick="heroclick(2)" type="button" class="heroButton" id="hbut3">Buy Boost</button>
-            <button onclick="openStory(3)" type="button" class="storyButton" id="story3">Story</button>
-            <div class="rep" id="rep3">Reputation Needed: 1K</div>
-          </td><td>
+        <div id="stats">
+          <h2>$</h2> &nbsp; <span id="money">0</span> &nbsp; &nbsp; &nbsp; 
+          <h3>Reputation</h3> &nbsp; <span id="rep">0</span>
+        </div>
 
-            <div class="heroimage" id="9"><img src="images/hero9.png"></div> 
-          </td><td>
-            <span class="heroes" id="hero9">Hero 9</span> <br>
-            <span class="boosts" id="b9">Power Boosts:</span> <span class="numhero" id="h9">0</span> &nbsp; <span class="upmultiple" id="um9"></span><br>
-            <span class="cost" id="cost9"></span> &nbsp;<span class="power" id="pow9"></span><br>
-            <button onclick="heroclick(8)" type="button" class="heroButton" id="hbut9">Buy Boost</button>
-            <button onclick="openStory(9)" type="button" class="storyButton" id="story9">Story</button>
-            <div class="rep" id="rep9">Reputation Needed: 1T</div>
-          </td></tr><tr><td>
-
-            <div class="heroimage" id="4"><img src="images/hero4.png"></div> 
-          </td><td>
-            <span class="heroes" id="hero4">Hero 4</span> <br>
-            <span class="boosts" id="b4">Power Boosts:</span> <span class="numhero" id="h4">0</span> &nbsp; <span class="upmultiple" id="um4"></span><br>
-            <span class="cost" id="cost4"></span> &nbsp;<span class="power" id="pow4"></span><br>
-            <button onclick="heroclick(3)" type="button" class="heroButton" id="hbut4">Buy Boost</button>
-            <button onclick="openStory(4)" type="button" class="storyButton" id="story4">Story</button>
-            <div class="rep" id="rep4">Reputation Needed: 10K</div>
-          </td><td>
-
-            <div class="heroimage" id="10"><img src="images/hero10.png"></div> 
-          </td><td>
-            <span class="heroes" id="hero10">Hero 10</span> <br>
-            <span class="boosts" id="b10">Power Boosts:</span> <span class="numhero" id="h10">0</span> &nbsp; <span class="upmultiple" id="um10"></span><br>
-            <span class="cost" id="cost10"></span> &nbsp;<span class="power" id="pow10"></span><br>
-            <button onclick="heroclick(9)" type="button" class="heroButton" id="hbut10">Buy Boost</button>
-            <button onclick="openStory(10)" type="button" class="storyButton" id="story10">Story</button>
-            <div class="rep" id="rep10">Reputation Needed: 10T</div>
-          </td></tr><tr><td>
-
-            <div class="heroimage" id="5"><img src="images/hero5.png"></div> 
-          </td><td>
-            <span class="heroes" id="hero5">Hero 5</span> <br>
-            <span class="boosts" id="b5">Power Boosts:</span> <span class="numhero" id="h5">0</span> &nbsp; <span class="upmultiple" id="um5"></span><br>
-            <span class="cost" id="cost5"></span> &nbsp;<span class="power" id="pow5"></span><br>
-            <button onclick="heroclick(4)" type="button" class="heroButton" id="hbut5">Buy Boost</button>
-            <button onclick="openStory(5)" type="button" class="storyButton" id="story5">Story</button>
-            <div class="rep" id="rep5">Reputation Needed: 100K</div>
-          </td><td>
-
-            <div class="heroimage" id="11"><img src="images/hero11.png"></div> 
-          </td><td>
-            <span class="heroes" id="hero11">Hero 11</span> <br>
-            <span class="boosts" id="b11">Power Boosts:</span> <span class="numhero" id="h11">0</span> &nbsp; <span class="upmultiple" id="um11"></span><br>
-            <span class="cost" id="cost11"></span> &nbsp;<span class="power" id="pow11"></span><br>
-            <button onclick="heroclick(10)" type="button" class="heroButton" id="hbut11">Buy Boost</button>
-            <button onclick="openStory(11)" type="button" class="storyButton" id="story11">Story</button>
-            <div class="rep" id="rep11">Reputation Needed: 100T</div>
-          </td></tr><tr><td>
-
-            <div class="heroimage" id="6"><img src="images/hero6.png"></div> 
-          </td><td>
-            <span class="heroes" id="hero6">Hero 6</span> <br>
-            <span class="boosts" id="b6">Power Boosts:</span> <span class="numhero" id="h6">0</span> &nbsp; <span class="upmultiple" id="um6"></span><br>
-            <span class="cost" id="cost6"></span> &nbsp;<span class="power" id="pow6"></span><br>
-            <button onclick="heroclick(5)" type="button" class="heroButton" id="hbut6">Buy Boost</button>
-            <button onclick="openStory(6)" type="button" class="storyButton" id="story6">Story</button>
-            <div class="rep" id="rep6">Reputation Needed: 1M</div>
-          </td><td>
-
-            <div class="heroimage" id="12"><img src="images/hero12.png"></div> 
-          </td><td>
-            <span class="heroes" id="hero12">Hero 12</span> <br>
-            <span class="boosts" id="b12">Power Boosts:</span> <span class="numhero" id="h12">0</span> &nbsp; <span class="upmultiple" id="um12"></span><br>
-            <span class="cost" id="cost12"></span> &nbsp;<span class="power" id="pow12"></span><br>
-            <button onclick="heroclick(11)" type="button" class="heroButton" id="hbut12">Buy Boost</button>
-            <button onclick="openStory(12)" type="button" class="storyButton" id="story12">Story</button>
-            <div class="rep" id="rep12">Reputation Needed: 1B</div>
-          </td></tr>
-
-          <tr><td colspan="4" id="instructions">
-            Buy your heroes power boosts to help them fight.<br>
-            As your reputation grows new heroes will be interested in joining your group.
-          </td></tr>
-        </table>
+        <div id="instructions">
+          Buy your heroes boost to help them fight. Increase your reputation to unlock new heroes
+        </div>
+        
+        <span id="testing"></span>
           
-          <span id="testing"></span>
-          
-        </td></tr>
-      </table>
+      </td></tr></table>
 	</div>
 
 	<div id="myNav" class="overlay">
