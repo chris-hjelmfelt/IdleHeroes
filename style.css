@@ -22,8 +22,16 @@ h4 {
 }
 
 .main {
-	width: 1200px;
+	width: 1000px;
 	border: 2px solid black;
+  overflow: hidden;
+}
+#leftSide {
+  width: 250px;
+  float: left;
+}
+#rightSide {
+  float: right;
 }
 
 
@@ -34,43 +42,43 @@ h4 {
 }
 .herobox {
   position: relative;
-  width: 280px;
-  height: 140px;
+  width: 240px;
+  height: 120px;
   border: 2px solid black;
-  margin: 0 5px 5px 0;
+  margin: 0 0 5px 5px;
 }
 .heroname {
   display: inline-block;
-  padding: 3px 0 0 6px;
-  font-size: 1.5em;
+  padding: 1px 0 0 4px;
+  font-size: 1.4em;
 	color: #009999;
 }
 .heroimage {
   position: absolute;
   left: -1px;
-  bottom: -2px;
-  width: 90px;
-  height: 108px;
+  bottom: -1px;
+  width: 80px;
+  height: 96px;
 	border: 2px solid black;
   display: none;
 }
 .herostats {
   position: absolute;
-  width: 170px;
+  width: 145px;
   right: 6px;
-  top: 30px;
+  top: 22px;
 }
 .storyButton {
 	display: none;
-  margin: 0 0 20px 0;
+  margin: 0 0 5px 0;
 }
 .boosts {
-	font-size: 1.2em;
+	font-size: 1.1em;
 	visibility: hidden;
 }
 .numhero {
 	color: #009999;
-	font-size: 1.3em;
+	font-size: 1.2em;
 	visibility: hidden;
 }
 .upmultiple{
@@ -90,10 +98,10 @@ h4 {
 }
 .heroButton {
   display: none;
-  margin: 5px 0 0 0;
+  margin: 3px 0 0 0;
 }
 .repneeded {
-  margin: 5px 0 0 0;
+  margin: 5px 0 0 4px;
 }
 
 
@@ -125,7 +133,8 @@ h4 {
   width: 100%;
 }
 #monsterimg {
-	width: 100%;
+	width: 250px;
+  height: 358px;
 	border: 2px solid black;	
 }
 #hptitle {
@@ -172,10 +181,10 @@ h4 {
 /* Attack & Upgrade button */
 #misc {
   position: relative;
-  width: 190px;
+  width: 150px;
   height: 60px;
   float: left;
-  margin-left: 20px;
+  margin-left: 10px;
 }
 .text-block {
   position: absolute;
@@ -234,7 +243,7 @@ width: 80%;
 	background-color: #0099FF;
 	color: black;
 	float: center;
-	width: 160px;
+	width: 140px;
 	border: 2px solid black;
 	outline: 2px;
 	padding: 10px;
