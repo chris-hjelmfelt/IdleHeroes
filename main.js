@@ -140,7 +140,7 @@ function manclick() {
 		} else { misschance = 3 - selfupgrades; }
 		
     totalCashFound = cashFound * (selfupgrades + 1);  // you get more as you upgrade
-		money = money + totalCashFound;
+		money = money + BigInt(totalCashFound);
 		
 		var hit = Math.ceil(Math.random() * (3 + misschance));
 		if (hit > 3){ // missed the hit
@@ -229,7 +229,7 @@ function killmonster(which) {
 function getmonster() {
 	newmonster = Math.ceil((Math.random() * monsters) - 1);
 	document.getElementById("monsterimg").src = imgArray[newmonster].src;
-	monsterhp = monstermax + Math.ceil(Math.random() * Math.ceil(monstermax/8)) - Math.ceil(Math.random() * Math.ceil(monstermax/8));
+	monsterhp = BigInt(monstermax + Math.ceil(Math.random() * Math.ceil(monstermax/8)) - Math.ceil(Math.random() * Math.ceil(monstermax/8)));
 	monsterhealth = monsterhp;
 	monsterbar();
 	document.getElementById("monster").innerHTML = monsterhealth;
