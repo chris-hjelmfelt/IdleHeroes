@@ -1,0 +1,17 @@
+Changes Needed:
+-----------------
+* Character stories have misspellings, etc. 
+* it's weird to get money from each hit in manual attack
+* Add a popup with credits - Pillbiddit made 3 monsters, etc
+* Maybe when you unlock a new character they join your team and they have some sort of base power
+  Should they wait until you have them join? (only show story button, their base power, and a button to have them join?)
+* Add more monsters
+* Add more upgrades
+* improve balance of power, cost, progression
+
+
+Advanced Improvements
+-----------------------
+* Upgrades for team wide boosts (better gear, magic item, add a healer, or whatever)
+* If you ever start creating a lot of monsters, it would be cool to add regions that you can enter once you have enough
+  power, and there are bonuses to fighting there, plus new/different creatures (but allow moving back and forth between them)
