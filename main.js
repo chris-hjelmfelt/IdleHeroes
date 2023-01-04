@@ -20,11 +20,11 @@ function onLoadCompleted(){
 var timeT = setInterval(timeTick, 500);
 var tickCount = 0;
 var power = 0;
-var money = 0n;
-var reputation = 0n;  // the added n should make it of type BigInt which people might hit if they play a long time
-var monsterhp = 50n;
-var monstermax = 200n;
-var monsterhealth = 50n;
+var money = 0;
+var reputation = 0; 
+var monsterhp = 50;
+var monstermax = 200;
+var monsterhealth = 50;
 var playerDam = 1;
 var deadmonsterflag = false;
 var messagetime = 0;
@@ -140,7 +140,7 @@ function manclick() {
 		} else { misschance = 3 - selfupgrades; }
 		
     totalCashFound = cashFound * (selfupgrades + 1);  // you get more as you upgrade
-		money = money + BigInt(totalCashFound);
+		money = money + totalCashFound;
 		
 		var hit = Math.ceil(Math.random() * (3 + misschance));
 		if (hit > 3){ // missed the hit
@@ -191,8 +191,8 @@ function fightmonster() {
 // updating the Monster Strength bar, when it's empty the monster dies
 function monsterbar() {
     var elem = document.getElementById("monsterbar"); 
-	if (monsterhealth > 0) {	
-		var mwidth = (monsterhealth/monsterhp) * 100;
+	if (monsterhealth > 0) {			
+		var mwidth = monsterhealth/monsterhp * 100;
 	} else {
 		var mwidth = 0;
 	}
@@ -229,7 +229,7 @@ function killmonster(which) {
 function getmonster() {
 	newmonster = Math.ceil((Math.random() * monsters) - 1);
 	document.getElementById("monsterimg").src = imgArray[newmonster].src;
-	monsterhp = BigInt(monstermax + Math.ceil(Math.random() * Math.ceil(monstermax/8)) - Math.ceil(Math.random() * Math.ceil(monstermax/8)));
+	monsterhp = monstermax + Math.ceil(Math.random() * Math.ceil(monstermax/8)) - Math.ceil(Math.random() * Math.ceil(monstermax/8));
 	monsterhealth = monsterhp;
 	monsterbar();
 	document.getElementById("monster").innerHTML = monsterhealth;
