@@ -47,7 +47,7 @@ var imgArray = new Array();
 var monsters = 10;
 for (var i = 0; i < monsters; i++){
 	imgArray[i] = new Image();
-	imgArray[i].src = 'monsters/monster' + (i+1) + '.jpg';
+	imgArray[i].src = 'monsters/monster' + (i+1) + '.png';
 }
 
 // Setup Game
