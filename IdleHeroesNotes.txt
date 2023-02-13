@@ -3,6 +3,7 @@ Changes Needed:
 * Character stories have misspellings, etc. 
 * it's weird to get money from each hit in manual attack
 * Add a popup with credits - Pillbiddit made 3 monsters, etc
+* It would be better to use a class to handle heroes - name, stats, etc. but it will break existing saves
 * Maybe when you unlock a new character they join your team and they have some sort of base power
   Should they wait until you have them join? (only show story button, their base power, and a button to have them join?)
 * Add more monsters

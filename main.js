@@ -38,9 +38,10 @@ var selfupgrades = 0;
 var heroupgrades = 0;
 var selfimage = "f";
 var firstshots = 5;
-var numOfHeroes = 12;
+var totalHeroes = 12;
 var combinedDamage = 0;
 var newUpgrade = 0;
+
 
 // Array for monster images
 var imgArray = new Array();
@@ -73,7 +74,7 @@ function printall() {
 	document.getElementById("monster").innerHTML = monsterhealth;
 	document.getElementById("money").innerHTML = money;
 	document.getElementById("rep").innerHTML = reputation;
-	for (let i = 0; i < numOfHeroes; i++){
+	for (let i = 0; i < totalHeroes; i++){
 		let j = i + 1;
 		document.getElementById("cost" + j).innerHTML = "cost = $"  + heroCost[i];
 		document.getElementById("pow" + j).innerHTML = "power = "  + (heroNum[i] * heroDam[i]);
@@ -111,7 +112,7 @@ function timeTick() {
 // The damage that the combined heroes will do to the monster
 function calculatePower(){
 	combinedDamage = 0;
-	for (let i = 0; i < numOfHeroes; i++){
+	for (let i = 0; i < totalHeroes; i++){
 		combinedDamage += heroNum[i] * heroDam[i];
 	}
 	power = combinedDamage;	
